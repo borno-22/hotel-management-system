@@ -1,0 +1,9 @@
+M:\Code\MyProject\hotel-management-system\Hotel Management System\bin\Debug\Hotel Management System.exe.config
+M:\Code\MyProject\hotel-management-system\Hotel Management System\bin\Debug\Hotel Management System.exe
+M:\Code\MyProject\hotel-management-system\Hotel Management System\bin\Debug\Hotel Management System.pdb
+M:\Code\MyProject\hotel-management-system\Hotel Management System\obj\Debug\Hotel Management System.csproj.AssemblyReference.cache
+M:\Code\MyProject\hotel-management-system\Hotel Management System\obj\Debug\Hotel_Management_System.Properties.Resources.resources
+M:\Code\MyProject\hotel-management-system\Hotel Management System\obj\Debug\Hotel Management System.csproj.GenerateResource.cache
+M:\Code\MyProject\hotel-management-system\Hotel Management System\obj\Debug\Hotel Management System.csproj.CoreCompileInputs.cache
+M:\Code\MyProject\hotel-management-system\Hotel Management System\obj\Debug\Hotel Management System.exe
+M:\Code\MyProject\hotel-management-system\Hotel Management System\obj\Debug\Hotel Management System.pdb
