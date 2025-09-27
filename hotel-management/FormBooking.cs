@@ -33,8 +33,9 @@ namespace hotel_management
 
                 var cmd = new SqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = $"select Booking.BookingID 'BookingID', UserInfo.Fullname 'Customer', Rooms.RoomNo 'Room', Booking.CheckIN 'CheckIN',Booking.CheckOut 'CheckOut', Booking.Status 'Status', Booking.CreateAt 'CreateAt' from Booking inner join UserInfo on UserInfo.UserID=Booking.UserID inner join Rooms on Booking.RoomID=Rooms.RoomID;  select distinct RoomType from Rooms where Status='Available'";
-
+                cmd.CommandText = $"select Booking.BookingID 'BooingID', UserInfo.Fullname 'Customer', Rooms.RoomNo 'Room', Booking.CheckIN 'CkIn', Booking.CheckOut 'CkOut', Booking.Status 'Status', Booking.CreateAt 'CreateAt', RoomType.RoomTypeID, Rooms.RoomID from Booking inner join UserInfo on UserInfo.UserID=Booking.UserID inner join Rooms on Booking.RoomID=Rooms.RoomID inner join RoomType on RoomType.RoomTypeID=Rooms.RoomTypeID; select * from RoomType; select * from Rooms";
+                
+                
                 DataSet ds = new DataSet();
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(ds);
@@ -44,15 +45,44 @@ namespace hotel_management
                 dgvBooking.Refresh();
                 dgvBooking.ClearSelection();
 
-                cmbStatus.DataSource = ds.Tables[0];
-                cmbStatus.DisplayMember = "Status";
-                cmbStatus.ValueMember = "BookingID";
-                cmbStatus.SelectedIndex = -1;
-
                 cmbType.DataSource = ds.Tables[1];
                 cmbType.DisplayMember = "RoomType";
-                //cmbType.ValueMember = "RoomID";   //for using distinct in 2nd query
+                cmbType.ValueMember = "RoomTypeID";
                 cmbType.SelectedIndex = -1;
+
+                cmbRoom.DataSource = ds.Tables[2];
+                cmbRoom.DisplayMember = "RoomNo";
+                cmbRoom.ValueMember = "RoomID";
+                cmbRoom.SelectedIndex = -1;
+
+                //cmbStatus.Items.Clear();
+                //cmbStatus.Items.Add("Booked");
+                //cmbStatus.Items.Add("CheckedIn");
+                //cmbStatus.Items.Add("CheckedOut");
+                //cmbStatus.Items.Add("Cancelled");
+
+                //cmbStatus.DataSource = ds.Tables[0];
+                //cmbStatus.DisplayMember = "Status";
+                //cmbStatus.ValueMember = "BookingID";
+                //cmbStatus.SelectedIndex = -1;
+
+                //// Room Types
+                //cmbType.DataSource = ds.Tables[1];
+                //cmbType.DisplayMember = "RoomType";
+                //cmbType.ValueMember = "RoomTypeID";
+                //cmbType.SelectedIndex = -1;
+
+                //// Rooms
+                //cmbRoom.DataSource = ds.Tables[2];
+                //cmbRoom.DisplayMember = "RoomNo";
+                //cmbRoom.ValueMember = "RoomID";
+                //cmbRoom.SelectedIndex = -1;
+
+                //// Status (manual, not from DB)
+                //cmbStatus.Items.Clear();
+                //cmbStatus.Items.AddRange(new string[] { "Booked", "Pending", "CheckedIn", "CheckedOut" });
+                //cmbStatus.SelectedIndex = -1;
+
 
                 con.Close();
             }
@@ -61,6 +91,37 @@ namespace hotel_management
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+
+        private void AvailableRoomType()  //don't touch
+        {
+            try
+            {
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
+
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"select distinct RoomType from Rooms where Status='Available'";
+
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                adp.Fill(dt);
+
+                cmbType.DataSource = dt;
+                cmbType.DisplayMember = "RoomType";
+                //cmbType.ValueMember = "RoomID";
+                cmbType.SelectedIndex = -1;
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }     
         }
 
 
@@ -105,67 +166,21 @@ namespace hotel_management
 
 
 
-        private void dgvBooking_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvBooking_CellClick(object sender, DataGridViewCellEventArgs e)  //don't touch
         {
-            if (e.RowIndex < 0)
-                return;
+            //if (e.RowIndex < 0)
+            //    return;
 
-            txtID.Text = dgvBooking.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txtCname.Text = dgvBooking.Rows[e.RowIndex].Cells[1].Value.ToString();
-            cmbStatus.SelectedValue = dgvBooking.Rows[e.RowIndex].Cells[0].Value.ToString();
+            //txtID.Text = dgvBooking.Rows[e.RowIndex].Cells[0].Value.ToString();
+            //txtCname.Text = dgvBooking.Rows[e.RowIndex].Cells[1].Value.ToString();
+            //// txtPrice.Text = dgvBooking.Rows[e.RowIndex].Cells[7].Value.ToString();
 
+            //cmbType.SelectedValue = dgvBooking.Rows[e.RowIndex].Cells[7].Value.ToString();
+            //cmbRoom.SelectedValue = dgvBooking.Rows[e.RowIndex].Cells[2].Value.ToString();
+            //cmbStatus.SelectedValue = dgvBooking.Rows[e.RowIndex].Cells[8].Value.ToString();
 
-            cmbType.SelectedValue = dgvBooking.Rows[e.RowIndex].Cells[0].Value.ToString();
-            cmbRoom.SelectedValue = dgvBooking.Rows[e.RowIndex].Cells[0].Value.ToString();
-            txtPrice.Text = dgvBooking.Rows[e.RowIndex].Cells[1].Value.ToString();
-
-            this.defProperties();
+            //this.defProperties();
         }
-
-
-        private void LoadProperties()  
-        {
-            try
-            {
-                var con = new SqlConnection();
-                con.ConnectionString = ApplicationHelper.connectionPath;
-                con.Open();
-
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = $"select RoomType.RoomType 'Type', Rooms.RoomNo 'Room', RoomType.Price 'Price' from RoomType inner join Rooms on RoomTypeID=RoomID";
-
-                DataSet ds = new DataSet();
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                adp.Fill(ds);
-
-                dgvBooking.AutoGenerateColumns = false;
-                dgvBooking.DataSource = ds.Tables[0];
-                dgvBooking.Refresh();
-                dgvBooking.ClearSelection();
-
-                cmbStatus.DataSource = ds.Tables[0];
-                cmbStatus.DisplayMember = "Status";
-                cmbStatus.ValueMember = "BookingID";
-                cmbStatus.SelectedIndex = -1;
-
-                cmbType.DataSource = ds.Tables[1];
-                cmbType.DisplayMember = "RoomType";
-                //cmbType.ValueMember = "RoomID";   //for using distinct in 2nd query
-                cmbType.SelectedIndex = -1;
-
-                con.Close();
-            }
-
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-
-
-
 
 
         private void defProperties()  //Properties Enable=false
@@ -179,21 +194,21 @@ namespace hotel_management
             cmbStatus.Enabled = false;
         }
 
-        private void dateCkOut_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnNew_Click(object sender, EventArgs e)
         {
             this.OpenData();
+            this.AvailableRoomType();
         }
 
         private void OpenData()  //when btnNew is clicked
         {
+            dgvBooking.ClearSelection();
+
             txtID.Text = "Auto Generate";
             txtCname.Text = "";
-            cmbStatus.SelectedIndex = -1;
+            txtPrice.Text = "";
+            cmbStatus.Text=null;
 
             dateCkIn.Enabled = true;
             dateCkOut.Enabled = true;
@@ -201,7 +216,6 @@ namespace hotel_management
             cmbRoom.Enabled = true;
             cmbStatus.Enabled = true;
 
-            dgvBooking.ClearSelection();
         }
     }
 }

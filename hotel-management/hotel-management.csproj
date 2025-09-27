@@ -53,6 +53,12 @@
     <Compile Include="FormAdministration.Designer.cs">
       <DependentUpon>FormAdministration.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormBook.Designer.cs">
+      <DependentUpon>FormBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormBooking.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,6 +117,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAdministration.resx">
       <DependentUpon>FormAdministration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBook.resx">
+      <DependentUpon>FormBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBooking.resx">
       <DependentUpon>FormBooking.cs</DependentUpon>

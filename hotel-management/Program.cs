@@ -26,7 +26,9 @@ namespace hotel_management
             //Application.Run(new FormCustomer());
             //Application.Run(new FormRoomType());
             //Application.Run(new FormRooms());
-            Application.Run(new FormBooking());
+            //Application.Run(new FormBooking());
+            Application.Run(new FormBook());
+
 
 
 
