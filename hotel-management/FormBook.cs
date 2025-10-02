@@ -101,35 +101,76 @@ namespace hotel_management
             cmbStatus.Enabled = false;
         }
 
-        private void AvailableRoomType()  //don't touch
+        //private void AvailableRoomType()  //don't touch
+        //{
+        //    try
+        //    {
+        //        var con = new SqlConnection();
+        //        con.ConnectionString = ApplicationHelper.connectionPath;
+        //        con.Open();
+
+        //        var cmd = new SqlCommand();
+        //        cmd.Connection = con;
+        //        cmd.CommandText = $"select distinct RoomType.RoomType,RoomType.RoomTypeID from Rooms inner join RoomType on Rooms.RoomTypeID = RoomType.RoomTypeID where Rooms.Status = 'Available'";
+
+
+        //        DataTable dt = new DataTable();
+        //        SqlDataAdapter adp = new SqlDataAdapter(cmd);
+        //        adp.Fill(dt);
+
+        //        cmbType.DataSource = dt;
+        //        cmbType.DisplayMember = "RoomType";
+        //        cmbType.ValueMember = "RoomTypeID";
+        //        cmbType.SelectedIndex = -1;
+
+        //        con.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message);
+        //    }
+        //}
+
+        private void AvailableRoomType()
         {
             try
             {
-                var con = new SqlConnection();
-                con.ConnectionString = ApplicationHelper.connectionPath;
-                con.Open();
+                using (SqlConnection con = new SqlConnection(ApplicationHelper.connectionPath))
+                {
+                    con.Open();
 
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = $"select distinct RoomType from Rooms where Status='Available'";
+                    string query = @"
+                SELECT DISTINCT rt.RoomTypeID, rt.RoomType
+                FROM Rooms r
+                INNER JOIN RoomType rt ON r.RoomTypeID = rt.RoomTypeID
+                WHERE r.RoomID NOT IN (
+                    SELECT b.RoomID
+                    FROM Booking b
+                    WHERE (b.CheckIN < @CheckOut AND b.CheckOut > @CheckIn)
+                )";
 
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@CheckIn", dateCkIn.Value);
+                        cmd.Parameters.AddWithValue("@CheckOut", dateCkOut.Value);
 
-                DataTable dt = new DataTable();
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                adp.Fill(dt);
+                        DataTable dt = new DataTable();
+                        SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                        adp.Fill(dt);
 
-                cmbType.DataSource = dt;
-                cmbType.DisplayMember = "RoomType";
-                //cmbType.ValueMember = "RoomID";
-                cmbType.SelectedIndex = -1;
-
-                con.Close();
+                        cmbType.DataSource = dt;
+                        cmbType.DisplayMember = "RoomType";
+                        cmbType.ValueMember = "RoomTypeID";
+                        cmbType.SelectedIndex = -1;
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -197,6 +238,7 @@ namespace hotel_management
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            this.AvailableRoomType();
             this.OpenData();
             dgvBooking.ClearSelection();
         }
@@ -236,20 +278,17 @@ namespace hotel_management
                 MessageBox.Show("Please select The Row First");
                 return;
             }
-            cmbStatus.DataSource = null;
-            cmbStatus.Items.Clear();
-            cmbStatus.Items.Add("Check-In");
-            cmbStatus.Items.Add("Check-Out");
-            cmbStatus.Items.Add("Booked");
-            cmbStatus.Items.Add("Pending");
-            cmbStatus.Items.Add("Cancelled");
-            cmbStatus.SelectedIndex = -1;
 
             dateCkIn.Enabled = true;
             dateCkOut.Enabled = true;
             cmbType.Enabled = true;
             cmbRoom.Enabled = true;
             cmbStatus.Enabled = true;
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
