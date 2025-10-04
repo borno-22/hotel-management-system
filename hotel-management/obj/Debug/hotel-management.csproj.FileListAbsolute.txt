@@ -41,4 +41,6 @@ C:\Users\Ornob\Desktop\hotel-management\hotel-management\obj\Debug\hotel_managem
 C:\Users\Ornob\Desktop\hotel-management\hotel-management\obj\Debug\hotel_management.FormCustomerInfo.resources
 C:\Users\Ornob\Desktop\hotel-management\hotel-management\obj\Debug\hotel_management.FormEmployeeInfo.resources
 C:\Users\Ornob\Desktop\hotel-management\hotel-management\obj\Debug\hotel_management.FormRooms.resources
-C:\Users\Ornob\Desktop\hotel-management\hotel-management\obj\Debug\hotel_management.FormBooking.resources
+C:\Users\Ornob\Desktop\hotel-management\hotel-management\obj\Debug\hotel_management.FormBookingMG.resources
+C:\Users\Ornob\Desktop\hotel-management\hotel-management\obj\Debug\hotel_management.FormBillingMG.resources
+C:\Users\Ornob\Desktop\hotel-management\hotel-management\obj\Debug\hotel_management.FormCustomer.resources

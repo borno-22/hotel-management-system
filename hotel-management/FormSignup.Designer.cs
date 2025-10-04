@@ -60,8 +60,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.67601F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.32399F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.97574F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.02426F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -69,7 +69,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1284, 611);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1484, 691);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
             // panel2
@@ -79,7 +79,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(618, 605);
+            this.panel2.Size = new System.Drawing.Size(795, 685);
             this.panel2.TabIndex = 0;
             // 
             // panel3
@@ -105,9 +105,9 @@
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(627, 3);
+            this.panel3.Location = new System.Drawing.Point(804, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(654, 605);
+            this.panel3.Size = new System.Drawing.Size(677, 685);
             this.panel3.TabIndex = 1;
             // 
             // btnHidden
@@ -353,17 +353,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 611);
+            this.ClientSize = new System.Drawing.Size(1484, 691);
             this.Controls.Add(this.tableLayoutPanel1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1300, 650);
-            this.MinimumSize = new System.Drawing.Size(1300, 650);
+            this.MaximumSize = new System.Drawing.Size(1500, 730);
+            this.MinimumSize = new System.Drawing.Size(1500, 730);
             this.Name = "FormSignup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SignUp";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSignup_FormClosing);
-            this.Load += new System.EventHandler(this.FormSignup_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

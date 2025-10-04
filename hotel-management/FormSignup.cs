@@ -24,12 +24,39 @@ namespace hotel_management
                 this.Owner.Show();
         }
 
+        private int getRoleID()     //for customerSignUp
+        {
+            int roleID = 0;
+            try
+            {
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
 
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"select RoleID from RoleType where Role = 'Customer'";
+
+                var result = cmd.ExecuteScalar();
+
+                if (result != null)
+                {
+                    roleID = Convert.ToInt32(result);
+                }
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return roleID;
+        }
 
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
-            int roleID=ApplicationHelper.getRoleID();
+            int roleID=this.getRoleID();
             if (roleID == 0) 
             {
                 MessageBox.Show("SignUp is temporary off.");
@@ -109,9 +136,6 @@ namespace hotel_management
             btnHidden.Visible = true;
         }
 
-        private void FormSignup_Load(object sender, EventArgs e)
-        {
 
-        }
     }
 }

@@ -38,14 +38,14 @@
             this.btnShow = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblSignUp = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btn_auto = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btn_auto = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblSignUp = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -137,18 +137,8 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1284, 611);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1484, 691);
             this.tableLayoutPanel1.TabIndex = 7;
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(659, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(622, 605);
-            this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
@@ -169,42 +159,29 @@
             this.panel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(650, 605);
+            this.panel2.Size = new System.Drawing.Size(752, 685);
             this.panel2.TabIndex = 1;
             // 
-            // label3
+            // label6
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(163, 532);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(201, 29);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Don\'t have any account?";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(199, 96);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(238, 24);
+            this.label6.TabIndex = 27;
+            this.label6.Text = "Welcome Back to HOTEL EVERGREEN";
             // 
-            // lblSignUp
+            // label5
             // 
-            this.lblSignUp.AutoSize = true;
-            this.lblSignUp.Font = new System.Drawing.Font("Myanmar Text", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.lblSignUp.Location = new System.Drawing.Point(358, 533);
-            this.lblSignUp.Name = "lblSignUp";
-            this.lblSignUp.Size = new System.Drawing.Size(69, 29);
-            this.lblSignUp.TabIndex = 5;
-            this.lblSignUp.Text = "SignUp";
-            this.lblSignUp.Click += new System.EventHandler(this.lblSignUp_Click);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Myanmar Text", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label11.Location = new System.Drawing.Point(265, 30);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(83, 43);
-            this.label11.TabIndex = 24;
-            this.label11.Text = "Login";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
+            this.label5.Location = new System.Drawing.Point(361, 346);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(118, 24);
+            this.label5.TabIndex = 26;
+            this.label5.Text = "Forget password?";
             // 
             // btn_auto
             // 
@@ -220,32 +197,55 @@
             this.btn_auto.TabStop = false;
             this.btn_auto.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // label11
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label5.Location = new System.Drawing.Point(361, 346);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 24);
-            this.label5.TabIndex = 26;
-            this.label5.Text = "Forget password?";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Myanmar Text", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
+            this.label11.Location = new System.Drawing.Point(265, 30);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(83, 43);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Login";
             // 
-            // label6
+            // lblSignUp
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(199, 96);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(238, 24);
-            this.label6.TabIndex = 27;
-            this.label6.Text = "Welcome Back to HOTEL EVERGREEN";
+            this.lblSignUp.AutoSize = true;
+            this.lblSignUp.Font = new System.Drawing.Font("Myanmar Text", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSignUp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
+            this.lblSignUp.Location = new System.Drawing.Point(358, 533);
+            this.lblSignUp.Name = "lblSignUp";
+            this.lblSignUp.Size = new System.Drawing.Size(69, 29);
+            this.lblSignUp.TabIndex = 5;
+            this.lblSignUp.Text = "SignUp";
+            this.lblSignUp.Click += new System.EventHandler(this.lblSignUp_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label3.Location = new System.Drawing.Point(163, 532);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(201, 29);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Don\'t have any account?";
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(761, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(720, 685);
+            this.panel1.TabIndex = 0;
             // 
             // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1284, 611);
+            this.ClientSize = new System.Drawing.Size(1484, 691);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

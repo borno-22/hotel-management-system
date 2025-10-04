@@ -55,17 +55,16 @@ namespace hotel_management
                 if (userType == "Admin" || userType == "Employee")
                 {
                     FormAdministration fa = new FormAdministration();
-                    fa.Show();
+                    fa.Show(this);
                     this.Hide();
 
                 }
                 else 
                 {
                     FormCustomer fc = new FormCustomer();
-                    fc.Show();
+                    fc.Show(this);
                     this.Hide();
                 }
-
 
                 con.Close();
             }
@@ -74,9 +73,9 @@ namespace hotel_management
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
+
+
 
         private void btnShow_Click(object sender, EventArgs e)
         {
@@ -98,5 +97,6 @@ namespace hotel_management
             fsign.Show(this);
             this.Hide();
         }
+
     }
 }

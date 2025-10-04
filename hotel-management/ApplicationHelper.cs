@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace hotel_management
 {
@@ -15,33 +14,5 @@ namespace hotel_management
         public static string FullName = "";
         public static string UserType = "";
 
-        public static int getRoleID()     //for customerSignUp
-        {
-            int roleID = 0;
-            try
-            {
-                var con = new SqlConnection();
-                con.ConnectionString = ApplicationHelper.connectionPath;
-                con.Open();
-
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = $"select RoleID from RoleType where Role = 'Customer'";
-
-                var result = cmd.ExecuteScalar();
-
-                if (result != null)
-                {
-                    roleID = Convert.ToInt32(result);
-                }
-
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return roleID;
-        }
     }
 }

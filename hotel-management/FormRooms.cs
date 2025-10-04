@@ -21,5 +21,20 @@ namespace hotel_management
         {
 
         }
+
+        private void FormRooms_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

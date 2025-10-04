@@ -199,6 +199,5 @@ namespace hotel_management
             btnSave.ForeColor= Color.FromArgb(17,61,50);
         }
 
-
     }
 }
