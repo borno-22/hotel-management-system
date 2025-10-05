@@ -52,6 +52,9 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSearchGID = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtGname = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.dateCkOut = new System.Windows.Forms.DateTimePicker();
@@ -74,9 +77,6 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
-            this.txtGname = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnSearchGID = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
@@ -335,6 +335,45 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(294, 462);
             this.panel3.TabIndex = 2;
+            // 
+            // btnSearchGID
+            // 
+            this.btnSearchGID.BackColor = System.Drawing.Color.White;
+            this.btnSearchGID.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearchGID.BackgroundImage")));
+            this.btnSearchGID.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSearchGID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchGID.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchGID.ForeColor = System.Drawing.Color.Transparent;
+            this.btnSearchGID.Location = new System.Drawing.Point(234, 38);
+            this.btnSearchGID.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSearchGID.Name = "btnSearchGID";
+            this.btnSearchGID.Size = new System.Drawing.Size(27, 26);
+            this.btnSearchGID.TabIndex = 67;
+            this.btnSearchGID.UseVisualStyleBackColor = false;
+            this.btnSearchGID.Click += new System.EventHandler(this.btnSearchGID_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
+            this.label10.Location = new System.Drawing.Point(0, 84);
+            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(103, 29);
+            this.label10.TabIndex = 68;
+            this.label10.Text = "Guest name";
+            // 
+            // txtGname
+            // 
+            this.txtGname.Enabled = false;
+            this.txtGname.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtGname.Location = new System.Drawing.Point(106, 81);
+            this.txtGname.Margin = new System.Windows.Forms.Padding(2);
+            this.txtGname.Name = "txtGname";
+            this.txtGname.Size = new System.Drawing.Size(158, 32);
+            this.txtGname.TabIndex = 67;
             // 
             // txtPhone
             // 
@@ -603,45 +642,6 @@
             this.btnDel.Text = "DELETE";
             this.btnDel.UseVisualStyleBackColor = false;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
-            // 
-            // txtGname
-            // 
-            this.txtGname.Enabled = false;
-            this.txtGname.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtGname.Location = new System.Drawing.Point(106, 81);
-            this.txtGname.Margin = new System.Windows.Forms.Padding(2);
-            this.txtGname.Name = "txtGname";
-            this.txtGname.Size = new System.Drawing.Size(158, 32);
-            this.txtGname.TabIndex = 67;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label10.Location = new System.Drawing.Point(0, 84);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(103, 29);
-            this.label10.TabIndex = 68;
-            this.label10.Text = "Guest name";
-            // 
-            // btnSearchGID
-            // 
-            this.btnSearchGID.BackColor = System.Drawing.Color.White;
-            this.btnSearchGID.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearchGID.BackgroundImage")));
-            this.btnSearchGID.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnSearchGID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearchGID.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchGID.ForeColor = System.Drawing.Color.Transparent;
-            this.btnSearchGID.Location = new System.Drawing.Point(234, 38);
-            this.btnSearchGID.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSearchGID.Name = "btnSearchGID";
-            this.btnSearchGID.Size = new System.Drawing.Size(27, 26);
-            this.btnSearchGID.TabIndex = 67;
-            this.btnSearchGID.UseVisualStyleBackColor = false;
-            this.btnSearchGID.Click += new System.EventHandler(this.btnSearchGID_Click);
             // 
             // FormBookingMG
             // 

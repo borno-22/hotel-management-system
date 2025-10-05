@@ -53,6 +53,9 @@ namespace hotel_management
                 cmbRoom.DisplayMember = "RoomNo";
                 cmbRoom.ValueMember = "RoomID";
 
+                cmbType.SelectedIndex = -1;
+                cmbRoom.SelectedIndex = -1;
+
                 con.Close();
             }
 
@@ -132,10 +135,10 @@ namespace hotel_management
 
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)  //selecting roomtype
         {
-            if (cmbType.SelectedIndex < 0) return;
+            if (cmbType.SelectedValue == null || cmbType.SelectedValue is DataRowView)
+                return;
 
-            int typeID;
-            if (!int.TryParse(cmbType.SelectedValue?.ToString(), out typeID)) return;
+            int typeID = Convert.ToInt32(cmbType.SelectedValue);
 
             cmbRoom.DataSource = null;
             this.LoadAvailableRooms(typeID);
@@ -201,8 +204,8 @@ namespace hotel_management
             string id = txtID.Text;
             string guestID = txtGID.Text;
             string roomID = cmbRoom.SelectedValue.ToString();
-            string checkIn=dateCkIn.Value.ToString();
-            string checkOut=dateCkOut.Value.ToString();
+            string checkIn = dateCkIn.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            string checkOut = dateCkOut.Value.ToString("yyyy-MM-dd HH:mm:ss");
             string status = cmbStatus.Text;
 
             string query = "";
@@ -267,6 +270,7 @@ namespace hotel_management
                 MessageBox.Show("Deleted");
                 this.LoadBookingData();
                 this.NewData();
+                this.defProperties();
 
                 con.Close();
             }

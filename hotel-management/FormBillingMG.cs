@@ -202,6 +202,39 @@ namespace hotel_management
             }
         }
 
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            string id = txtID.Text;
+            if (id == "Auto Generate")
+            {
+                MessageBox.Show("Please select The Row First");
+                return;
+            }
+            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+                return;
 
+            try
+            {
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
+
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"delete from Bills where BillsID={id}";
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Deleted");
+                this.LoadBillingData();
+                this.NewData();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
