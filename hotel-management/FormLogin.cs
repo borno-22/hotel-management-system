@@ -31,7 +31,7 @@ namespace hotel_management
 
                 var cmd = new SqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = $"select UserInfo.Fullname, RoleType.Role from RoleType inner join UserInfo on UserInfo.RoleID = RoleType.RoleID where UserInfo.Email='{email}' and UserInfo.Password='{pass}'";
+                cmd.CommandText = $"select UserInfo.UserID, UserInfo.Fullname, RoleType.Role from RoleType inner join UserInfo on UserInfo.RoleID = RoleType.RoleID where UserInfo.Email='{email}' and UserInfo.Password='{pass}'";
                 
                 DataTable dt = new DataTable();
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -45,9 +45,11 @@ namespace hotel_management
 
                string fullName = dt.Rows[0]["Fullname"].ToString();
                string userType = dt.Rows[0]["Role"].ToString();
+               string userID = dt.Rows[0]["UserID"].ToString();
 
                 ApplicationHelper.FullName = fullName;
                 ApplicationHelper.UserType = userType;
+                ApplicationHelper.UserID = userID;
 
 
                 MessageBox.Show("Welcome, " + fullName);
@@ -97,6 +99,14 @@ namespace hotel_management
             fsign.Show(this);
             this.Hide();
         }
+
+        private void lblForgot1_Click(object sender, EventArgs e)
+        {
+            FormForgotPass1 fp1 = new FormForgotPass1();
+            fp1.Show();
+
+        }
+
 
     }
 }

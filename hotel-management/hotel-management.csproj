@@ -32,9 +32,23 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>nature.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationHelper.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="FormAdministration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +79,12 @@
     <Compile Include="FormBookingMG.Designer.cs">
       <DependentUpon>FormBookingMG.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormCusBooking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormCusBooking.Designer.cs">
+      <DependentUpon>FormCusBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +96,18 @@
     </Compile>
     <Compile Include="FormEmployeeInfo.Designer.cs">
       <DependentUpon>FormEmployeeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForgotPass1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForgotPass1.Designer.cs">
+      <DependentUpon>FormForgotPass1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormForgotPass2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormForgotPass2.Designer.cs">
+      <DependentUpon>FormForgotPass2.cs</DependentUpon>
     </Compile>
     <Compile Include="FormLogin.cs">
       <SubType>Form</SubType>
@@ -102,6 +133,12 @@
     <Compile Include="FormRoomType.Designer.cs">
       <DependentUpon>FormRoomType.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSetting.Designer.cs">
+      <DependentUpon>FormSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormSignup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,11 +162,20 @@
     <EmbeddedResource Include="FormBookingMG.resx">
       <DependentUpon>FormBookingMG.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormCusBooking.resx">
+      <DependentUpon>FormCusBooking.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCustomer.resx">
       <DependentUpon>FormCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmployeeInfo.resx">
       <DependentUpon>FormEmployeeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForgotPass1.resx">
+      <DependentUpon>FormForgotPass1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormForgotPass2.resx">
+      <DependentUpon>FormForgotPass2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
@@ -142,6 +188,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormRoomType.resx">
       <DependentUpon>FormRoomType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSetting.resx">
+      <DependentUpon>FormSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSignup.resx">
       <DependentUpon>FormSignup.cs</DependentUpon>
@@ -170,6 +219,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="nature.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
