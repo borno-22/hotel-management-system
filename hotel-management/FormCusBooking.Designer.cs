@@ -32,10 +32,12 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnSearchRoom = new System.Windows.Forms.Button();
             this.cmbRoomNo = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSubmit = new System.Windows.Forms.Button();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.txtDuration = new System.Windows.Forms.TextBox();
             this.dateCkOut = new System.Windows.Forms.DateTimePicker();
@@ -45,8 +47,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmbType = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -84,7 +84,7 @@
             this.panel2.Controls.Add(this.btnSearchRoom);
             this.panel2.Controls.Add(this.cmbRoomNo);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.btnSubmit);
             this.panel2.Controls.Add(this.txtAmount);
             this.panel2.Controls.Add(this.txtDuration);
             this.panel2.Controls.Add(this.dateCkOut);
@@ -99,6 +99,27 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(558, 575);
             this.panel2.TabIndex = 1;
+            // 
+            // cmbType
+            // 
+            this.cmbType.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Location = new System.Drawing.Point(237, 220);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(173, 32);
+            this.cmbType.TabIndex = 70;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label2.Location = new System.Drawing.Point(101, 223);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(116, 34);
+            this.label2.TabIndex = 69;
+            this.label2.Text = "Room Type";
             // 
             // btnSearchRoom
             // 
@@ -137,17 +158,18 @@
             this.label7.TabIndex = 14;
             this.label7.Text = "Room no.";
             // 
-            // button1
+            // btnSubmit
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Myanmar Text", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.button1.Location = new System.Drawing.Point(237, 483);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 37);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Send Request";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSubmit.Font = new System.Drawing.Font("Myanmar Text", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSubmit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
+            this.btnSubmit.Location = new System.Drawing.Point(228, 483);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(156, 37);
+            this.btnSubmit.TabIndex = 11;
+            this.btnSubmit.Text = "Submit Request";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // txtAmount
             // 
@@ -238,27 +260,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Booking";
             // 
-            // cmbType
-            // 
-            this.cmbType.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cmbType.FormattingEnabled = true;
-            this.cmbType.Location = new System.Drawing.Point(237, 220);
-            this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(173, 32);
-            this.cmbType.TabIndex = 70;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(101, 223);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 34);
-            this.label2.TabIndex = 69;
-            this.label2.Text = "Room Type";
-            // 
             // FormCusBooking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,6 +270,7 @@
             this.Name = "FormCusBooking";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Booking";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormCusBooking_FormClosing);
             this.Load += new System.EventHandler(this.FormCusBooking_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -287,7 +289,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.TextBox txtDuration;
         private System.Windows.Forms.DateTimePicker dateCkOut;

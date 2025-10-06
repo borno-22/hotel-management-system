@@ -16,13 +16,15 @@ namespace hotel_management
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new FormLogin());
+            Application.Run(new FormLogin());
             //Application.Run(new FormForgotPass1());
             //Application.Run(new FormForgotPass2());
             //Application.Run(new FormSignup());
             //Application.Run(new FormAdministration());
             //Application.Run(new FormCustomer());
-            Application.Run(new FormCusBooking());
+            //Application.Run(new FormCusBooking());
+            //Application.Run(new FormCusBilling());
+            //Application.Run(new FormCusHistory());
             //Application.Run(new FormRoleType());
             //Application.Run(new FormCustomerInfo());
             //Application.Run(new FormEmployeeInfo());

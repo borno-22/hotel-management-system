@@ -18,6 +18,14 @@ namespace hotel_management
             InitializeComponent();
         }
 
+        private void FormCusBooking_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.Owner != null)
+                this.Owner.Show();
+        }
+
+
+
         private void FormCusBooking_Load(object sender, EventArgs e)
         {
             this.LoadRoomType();
@@ -42,7 +50,6 @@ namespace hotel_management
                 cmbType.DataSource = dt;
                 cmbType.DisplayMember = "RoomType";
                 cmbType.ValueMember = "RoomTypeID";
-
                 cmbType.SelectedIndex = -1;
 
                 con.Close();
@@ -54,9 +61,12 @@ namespace hotel_management
             }
         }
 
+
+
         private void btnSearchRoom_Click(object sender, EventArgs e)
         {
             this.LoadAvailableRoom();
+            this.LoadPrice();
         }
 
         private void LoadAvailableRoom()
@@ -109,9 +119,101 @@ namespace hotel_management
             {
                 MessageBox.Show(ex.Message);
             }
+        }
 
+        private void LoadPrice()
+        {
+            int duration = (dateCkOut.Value.Date - dateCkIn.Value.Date).Days;
+
+            if(duration ==0 || cmbType.SelectedValue==null)
+                return;
+
+            txtDuration.Text = duration.ToString();
+
+            try
+            {
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
+
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"select Price from RoomType where RoomTypeID='{cmbType.SelectedValue}'";
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                adp.Fill(dt);
+
+                int amount = duration * Convert.ToInt32(dt.Rows[0][0]);
+                txtAmount.Text = amount.ToString();
+                ApplicationHelper.Amount = txtAmount.Text;
+
+                con.Close();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
 
         }
+
+
+
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            this.Submit();
+        }
+
+        private void Submit()
+        {
+            if (cmbRoomNo.SelectedIndex==-1)
+            {
+                MessageBox.Show("Please input all field");
+                return;
+            }
+
+            string guestID = ApplicationHelper.UserID;
+            string roomID = cmbRoomNo.SelectedValue.ToString();
+            string checkIn = dateCkIn.Value.ToString("yyyy-MM-dd");
+            string checkOut = dateCkOut.Value.ToString("yyyy-MM-dd");
+            string status = "Pending";
+
+            try
+            {
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
+
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"insert into Booking (UserID,RoomID,CheckIN,CheckOut,Status) values ('{guestID}','{roomID}','{checkIn}','{checkOut}','{status}')";
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Request sent");
+
+
+                cmd.CommandText = $"select Booking.BookingID from Booking where UserID='{guestID}' and RoomID='{roomID}' and CheckIN='{checkIn}' and CheckOut='{checkOut}'";
+                DataTable dt = new DataTable();
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                adp.Fill(dt);
+
+                ApplicationHelper.BookingID = dt.Rows[0][0].ToString();
+
+                FormCusBilling cusBilling = new FormCusBilling();
+                cusBilling.ShowDialog();
+                this.Close();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
     }
 }

@@ -21,5 +21,25 @@ namespace hotel_management
         {
 
         }
+
+        private void FormCustomer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.Owner != null)
+                this.Owner.Show();
+        }
+
+        private void btnBooking_Click(object sender, EventArgs e)
+        {
+            FormCusBooking cusBooking = new FormCusBooking();
+            cusBooking.Show(this);
+            this.Hide();
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            FormCusHistory cusHistory = new FormCusHistory();
+            cusHistory.Show(this);
+            this.Hide();
+        }
     }
 }

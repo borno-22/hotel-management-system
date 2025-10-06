@@ -13,6 +13,9 @@ namespace hotel_management
         public static string connectionPath = @"Data Source=DESKTOP-0E77KI6;Initial Catalog=HotelMSdb;Integrated Security=True;Encrypt=False";
         public static string FullName = "";
         public static string UserType = "";
+        public static string UserID = "";
+        public static string BookingID = "";
+        public static string Amount = "";
 
     }
 }
