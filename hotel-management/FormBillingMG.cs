@@ -23,6 +23,9 @@ namespace hotel_management
         {
             this.defProperties();
             this.LoadBillingData();
+
+            if(ApplicationHelper.UserType !="Admin")
+                btnDel.Visible=false;
         }
 
         private void defProperties()  //Properties Enable=false

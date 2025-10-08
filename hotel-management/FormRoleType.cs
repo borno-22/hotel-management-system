@@ -187,17 +187,5 @@ namespace hotel_management
             }
         }
 
-        private void btnSave_MouseHover(object sender, EventArgs e)
-        {
-            btnSave.BackColor = Color.FromArgb(17,61,50);
-            btnSave.ForeColor = Color.White;
-        }
-
-        private void btnSave_MouseLeave(object sender, EventArgs e)
-        {
-            btnSave.BackColor= Color.Transparent;
-            btnSave.ForeColor= Color.FromArgb(17,61,50);
-        }
-
     }
 }

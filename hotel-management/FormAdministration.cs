@@ -31,6 +31,20 @@ namespace hotel_management
             lblFullname.Text = $"{ApplicationHelper.FullName}";
             lblUserType.Text = $"{ApplicationHelper.UserType}";
             this.LoadData();
+            this.empRestriction();
+        }
+
+        private void empRestriction()
+        {
+            if (ApplicationHelper.UserType != "Admin")
+            {
+                btnRoomTypeMG.Visible=false;
+                btnRoleMG.Visible=false;
+                btnEmployeeMG.Visible=false;
+                pnlEmp.Visible=false;
+                pnlRevenue.Visible=false;
+                pnlPending.Visible=false;
+            }
         }
 
         private void LoadData()
@@ -143,9 +157,19 @@ namespace hotel_management
             }
         }
 
+        private void tableLayoutPanel7_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
 
+        private void panel15_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
 
+        private void panel31_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

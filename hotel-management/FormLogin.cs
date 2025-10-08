@@ -54,7 +54,7 @@ namespace hotel_management
 
                 MessageBox.Show("Welcome, " + fullName);
 
-                if (userType == "Admin" || userType == "Employee")
+                if (userType == "Admin" || userType == "Receptionist")
                 {
                     FormAdministration fa = new FormAdministration();
                     fa.Show(this);

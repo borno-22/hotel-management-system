@@ -29,6 +29,7 @@ namespace hotel_management
         private void FormCusBooking_Load(object sender, EventArgs e)
         {
             this.LoadRoomType();
+            this.defProperties();
         }
 
         private void LoadRoomType()
@@ -50,7 +51,6 @@ namespace hotel_management
                 cmbType.DataSource = dt;
                 cmbType.DisplayMember = "RoomType";
                 cmbType.ValueMember = "RoomTypeID";
-                cmbType.SelectedIndex = -1;
 
                 con.Close();
             }
@@ -61,12 +61,31 @@ namespace hotel_management
             }
         }
 
+        private void defProperties()
+        {
+            cmbRoomNo.Enabled = false;
+            txtDuration.Enabled = false;
+            txtAmount.Enabled = false;
 
+            cmbType.SelectedIndex = -1;
+            cmbRoomNo.SelectedIndex = -1;
+
+        }
+
+
+
+
+
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbRoomNo.SelectedIndex = -1;
+            cmbRoomNo.Enabled = false;
+        }
 
         private void btnSearchRoom_Click(object sender, EventArgs e)
         {
-            this.LoadAvailableRoom();
             this.LoadPrice();
+            this.LoadAvailableRoom();
         }
 
         private void LoadAvailableRoom()
@@ -106,11 +125,16 @@ namespace hotel_management
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);
 
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("No available room.");
+                    return;
+                }
+
                 cmbRoomNo.DataSource = dt;
                 cmbRoomNo.DisplayMember = "RoomNo";
                 cmbRoomNo.ValueMember = "RoomID";
-
-                cmbRoomNo.SelectedIndex = -1;
+                cmbRoomNo.Enabled = true;
 
                 con.Close();
             }

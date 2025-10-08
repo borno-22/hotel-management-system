@@ -29,6 +29,13 @@ namespace hotel_management
         private void FormCusHistory_Load(object sender, EventArgs e)
         {
             this.LoadData();
+            this.defProperties();
+        }
+
+        private void defProperties()
+        {
+            pnlCancelBooking.Enabled = false;
+            pnlBillPay.Enabled = false;
         }
 
         private void LoadData()
@@ -43,8 +50,8 @@ namespace hotel_management
 
                 var cmd = new SqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = $"select Booking.BookingID, RoomType.RoomType, Rooms.RoomNo, Booking.CheckIN, Booking.CheckOut, Booking.Status from Booking inner join Rooms on Booking.RoomID=Rooms.RoomID inner join RoomType on RoomType.RoomTypeID=Rooms.RoomTypeID inner join UserInfo on UserInfo.UserID=Booking.UserID  where Booking.UserID='{id}'; \r\n" +
-                    $"select Bills.BillsID,Bills.BookingID,Bills.TotalAmount,Bills.PaymentMethod,Bills.Status,Bills.GeneratedAt from Bills inner join Booking on Booking.BookingID=Bills.BookingID  where Booking.UserID='{id}';";
+                cmd.CommandText = $"select Booking.BookingID, RoomType.RoomType, Rooms.RoomNo, Booking.CheckIN, Booking.CheckOut, Booking.Status from Booking inner join Rooms on Booking.RoomID=Rooms.RoomID inner join RoomType on RoomType.RoomTypeID=Rooms.RoomTypeID inner join UserInfo on UserInfo.UserID=Booking.UserID  where Booking.UserID='{id}' order by Booking.CreateAt desc; \r\n" +
+                    $"select Bills.BillsID,Bills.BookingID,Bills.TotalAmount,Bills.PaymentMethod,Bills.Status,Bills.GeneratedAt from Bills inner join Booking on Booking.BookingID=Bills.BookingID  where Booking.UserID='{id}' order by Bills.GeneratedAt desc;";
 
                 DataSet ds = new DataSet();
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -86,7 +93,7 @@ namespace hotel_management
             {
                 pnlCancelBooking.Enabled = true;
             }
-            else 
+            else
             {
                 pnlCancelBooking.Enabled = false;
             }
@@ -115,7 +122,7 @@ namespace hotel_management
                 MessageBox.Show("Booking Cancelled");
 
                 this.LoadData();
-                dgvBooking.ClearSelection();
+                this.defProperties();
 
                 con.Close();
             }
@@ -173,7 +180,7 @@ namespace hotel_management
                 MessageBox.Show("Payment Completed");
 
                 this.LoadData();
-                dgvBooking.ClearSelection();
+                this.defProperties();
 
                 con.Close();
             }
@@ -182,5 +189,6 @@ namespace hotel_management
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }

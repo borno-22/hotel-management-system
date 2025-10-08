@@ -107,6 +107,7 @@
             this.txtBookingID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtBookingID.Location = new System.Drawing.Point(251, 131);
             this.txtBookingID.Name = "txtBookingID";
+            this.txtBookingID.ReadOnly = true;
             this.txtBookingID.Size = new System.Drawing.Size(173, 32);
             this.txtBookingID.TabIndex = 76;
             // 
@@ -175,6 +176,7 @@
             this.txtAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtAmount.Location = new System.Drawing.Point(251, 184);
             this.txtAmount.Name = "txtAmount";
+            this.txtAmount.ReadOnly = true;
             this.txtAmount.Size = new System.Drawing.Size(173, 32);
             this.txtAmount.TabIndex = 12;
             // 

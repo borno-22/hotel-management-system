@@ -20,8 +20,11 @@ namespace hotel_management
 
         private void FormBookingMG_Load(object sender, EventArgs e)
         {
-            this.defProperties();
             this.LoadBookingData();
+            this.defProperties();
+
+            if (ApplicationHelper.UserType != "Admin")
+                btnDel.Visible = false;
         }
 
         private void defProperties()  //Properties Enable=false
@@ -49,6 +52,13 @@ namespace hotel_management
             cmbRoom.SelectedIndex = -1;
             cmbStatus.SelectedIndex = -1;
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            this.LoadBookingData();
+            this.defProperties();
+        }
+
 
 
 
@@ -185,11 +195,19 @@ namespace hotel_management
             }
         }
 
+
+
+
+
+        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cmbRoom.SelectedIndex = -1;
+            cmbRoom.Enabled = false;
+        }
+      
         private void btnSearchRoom_Click(object sender, EventArgs e)
         {
             this.LoadAvailableRoom();
-            cmbRoom.Enabled = true;
-            cmbStatus.Enabled = true;
         }
         private void LoadAvailableRoom()
         {
@@ -228,9 +246,17 @@ namespace hotel_management
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);
 
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("No available room.");
+                    return;
+                }
+
                 cmbRoom.DataSource = dt;
                 cmbRoom.DisplayMember = "RoomNo";
                 cmbRoom.ValueMember = "RoomID";
+                cmbRoom.Enabled = true;
+                cmbStatus.Enabled = true;
 
                 con.Close();
             }
@@ -349,11 +375,7 @@ namespace hotel_management
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            this.defProperties();
-            this.LoadBookingData();
-        }
+
 
 
     }

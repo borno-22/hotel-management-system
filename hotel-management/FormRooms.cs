@@ -147,6 +147,11 @@ namespace hotel_management
         private void FormRooms_Load(object sender, EventArgs e)
         {
             this.LoadRooms();
+            if(ApplicationHelper.UserType != "Admin")
+            {
+                pnlButtons.Visible = false;
+                pnlInfo.Visible = false;
+            }
         }
         private void LoadRooms()
         {

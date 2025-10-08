@@ -109,6 +109,7 @@
             this.cmbType.Name = "cmbType";
             this.cmbType.Size = new System.Drawing.Size(173, 32);
             this.cmbType.TabIndex = 70;
+            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -129,7 +130,7 @@
             this.btnSearchRoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchRoom.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchRoom.ForeColor = System.Drawing.Color.Transparent;
-            this.btnSearchRoom.Location = new System.Drawing.Point(416, 275);
+            this.btnSearchRoom.Location = new System.Drawing.Point(415, 223);
             this.btnSearchRoom.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearchRoom.Name = "btnSearchRoom";
             this.btnSearchRoom.Size = new System.Drawing.Size(27, 26);
@@ -173,6 +174,7 @@
             // 
             // txtAmount
             // 
+            this.txtAmount.Enabled = false;
             this.txtAmount.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtAmount.Location = new System.Drawing.Point(237, 377);
@@ -182,6 +184,7 @@
             // 
             // txtDuration
             // 
+            this.txtDuration.Enabled = false;
             this.txtDuration.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDuration.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtDuration.Location = new System.Drawing.Point(237, 325);

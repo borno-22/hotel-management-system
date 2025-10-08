@@ -19,6 +19,15 @@ namespace hotel_management
 
         private void FormUserInfo_Load(object sender, EventArgs e)
         {
+            this.LoadData();
+
+
+            if(ApplicationHelper.UserType!="Admin")
+                btnDel.Visible=false;
+        }
+
+        private void LoadData()
+        {
             try
             {
                 var con = new SqlConnection();
@@ -30,8 +39,8 @@ namespace hotel_management
                 cmd.Connection = con;
                 cmd.CommandText = $"select * from UserInfo where RoleID=3";
 
-                DataTable dt= new DataTable();
-                SqlDataAdapter adp= new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
                 adp.Fill(dt);
 
                 dgvCustomer.AutoGenerateColumns = false;
@@ -42,7 +51,7 @@ namespace hotel_management
                 con.Close();
             }
 
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
