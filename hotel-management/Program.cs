@@ -16,7 +16,7 @@ namespace hotel_management
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormLogin());
+            //Application.Run(new FormLogin());
             //Application.Run(new FormForgotPass1());
             //Application.Run(new FormForgotPass2());
             //Application.Run(new FormSignup());
@@ -30,7 +30,7 @@ namespace hotel_management
             //Application.Run(new FormEmployeeInfo());
             //Application.Run(new FormRoomType());
             //Application.Run(new FormRooms());
-            //Application.Run(new FormBookingMG());
+            Application.Run(new FormBookingMG());
             //Application.Run(new FormBillingMG());
 
 

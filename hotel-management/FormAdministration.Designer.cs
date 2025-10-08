@@ -61,7 +61,9 @@
             this.panel15 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
+            this.panel45 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
@@ -76,7 +78,7 @@
             this.tableLayoutPanel13 = new System.Windows.Forms.TableLayoutPanel();
             this.panel40 = new System.Windows.Forms.Panel();
             this.panel41 = new System.Windows.Forms.Panel();
-            this.lblTbook = new System.Windows.Forms.Label();
+            this.lblPbook = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel36 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel12 = new System.Windows.Forms.TableLayoutPanel();
@@ -89,13 +91,13 @@
             this.panel33 = new System.Windows.Forms.Panel();
             this.panel35 = new System.Windows.Forms.Panel();
             this.lblPending = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblPendingCount = new System.Windows.Forms.Label();
             this.panel29 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.panel30 = new System.Windows.Forms.Panel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.lblRevenue = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.lblPaidCount = new System.Windows.Forms.Label();
             this.panel26 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.panel27 = new System.Windows.Forms.Panel();
@@ -106,7 +108,7 @@
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.panel24 = new System.Windows.Forms.Panel();
             this.panel25 = new System.Windows.Forms.Panel();
-            this.lblAroom = new System.Windows.Forms.Label();
+            this.lblTroom = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel20 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
@@ -120,7 +122,6 @@
             this.panel19 = new System.Windows.Forms.Panel();
             this.lblEmp = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -140,6 +141,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.panel15.SuspendLayout();
             this.panel16.SuspendLayout();
+            this.panel45.SuspendLayout();
             this.panel17.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.panel42.SuspendLayout();
@@ -558,8 +560,8 @@
             // panel16
             // 
             this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel16.Controls.Add(this.panel45);
             this.panel16.Controls.Add(this.label13);
-            this.panel16.Controls.Add(this.btnRefresh);
             this.panel16.Controls.Add(this.label2);
             this.panel16.Controls.Add(this.label1);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -568,12 +570,21 @@
             this.panel16.Size = new System.Drawing.Size(1048, 73);
             this.panel16.TabIndex = 1;
             // 
+            // panel45
+            // 
+            this.panel45.Controls.Add(this.btnRefresh);
+            this.panel45.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel45.Location = new System.Drawing.Point(870, 0);
+            this.panel45.Name = "panel45";
+            this.panel45.Size = new System.Drawing.Size(178, 73);
+            this.panel45.TabIndex = 11;
+            // 
             // btnRefresh
             // 
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.btnRefresh.Location = new System.Drawing.Point(895, 13);
+            this.btnRefresh.Location = new System.Drawing.Point(25, 19);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(117, 32);
             this.btnRefresh.TabIndex = 9;
@@ -581,13 +592,24 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label13.Location = new System.Drawing.Point(8, 46);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(448, 23);
+            this.label13.TabIndex = 10;
+            this.label13.Text = "Overview of employees, guests, rooms, bookings, and revenue in real time.";
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.label2.Font = new System.Drawing.Font("Gill Sans MT", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label2.Location = new System.Drawing.Point(169, 13);
+            this.label2.Location = new System.Drawing.Point(196, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 30);
             this.label2.TabIndex = 8;
@@ -600,9 +622,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.Location = new System.Drawing.Point(8, 14);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(169, 30);
+            this.label1.Size = new System.Drawing.Size(189, 30);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Welcome Hotel,";
+            this.label1.Text = "Welcome to Hotel,";
             // 
             // panel17
             // 
@@ -746,7 +768,7 @@
             // 
             // panel41
             // 
-            this.panel41.Controls.Add(this.lblTbook);
+            this.panel41.Controls.Add(this.lblPbook);
             this.panel41.Controls.Add(this.label11);
             this.panel41.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel41.Location = new System.Drawing.Point(101, 3);
@@ -754,27 +776,27 @@
             this.panel41.Size = new System.Drawing.Size(219, 154);
             this.panel41.TabIndex = 2;
             // 
-            // lblTbook
+            // lblPbook
             // 
-            this.lblTbook.AutoSize = true;
-            this.lblTbook.Font = new System.Drawing.Font("Myanmar Text", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTbook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.lblTbook.Location = new System.Drawing.Point(66, 44);
-            this.lblTbook.Name = "lblTbook";
-            this.lblTbook.Size = new System.Drawing.Size(87, 62);
-            this.lblTbook.TabIndex = 6;
-            this.lblTbook.Text = "100";
+            this.lblPbook.AutoSize = true;
+            this.lblPbook.Font = new System.Drawing.Font("Myanmar Text", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPbook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
+            this.lblPbook.Location = new System.Drawing.Point(66, 44);
+            this.lblPbook.Name = "lblPbook";
+            this.lblPbook.Size = new System.Drawing.Size(87, 62);
+            this.lblPbook.TabIndex = 6;
+            this.lblPbook.Text = "100";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label11.Location = new System.Drawing.Point(42, 105);
+            this.label11.Location = new System.Drawing.Point(28, 105);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(131, 34);
+            this.label11.Size = new System.Drawing.Size(159, 34);
             this.label11.TabIndex = 4;
-            this.label11.Text = "Total Booking";
+            this.label11.Text = "Pending Booking";
             // 
             // panel36
             // 
@@ -883,7 +905,7 @@
             // panel35
             // 
             this.panel35.Controls.Add(this.lblPending);
-            this.panel35.Controls.Add(this.label9);
+            this.panel35.Controls.Add(this.lblPendingCount);
             this.panel35.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel35.Location = new System.Drawing.Point(101, 3);
             this.panel35.Name = "panel35";
@@ -901,16 +923,16 @@
             this.lblPending.TabIndex = 6;
             this.lblPending.Text = "100";
             // 
-            // label9
+            // lblPendingCount
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(32, 101);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(163, 34);
-            this.label9.TabIndex = 4;
-            this.label9.Text = "Pending Payment";
+            this.lblPendingCount.AutoSize = true;
+            this.lblPendingCount.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPendingCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPendingCount.Location = new System.Drawing.Point(21, 101);
+            this.lblPendingCount.Name = "lblPendingCount";
+            this.lblPendingCount.Size = new System.Drawing.Size(168, 34);
+            this.lblPendingCount.TabIndex = 4;
+            this.lblPendingCount.Text = "Pending Payment ";
             // 
             // panel29
             // 
@@ -951,7 +973,7 @@
             // panel31
             // 
             this.panel31.Controls.Add(this.lblRevenue);
-            this.panel31.Controls.Add(this.label8);
+            this.panel31.Controls.Add(this.lblPaidCount);
             this.panel31.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel31.Location = new System.Drawing.Point(101, 3);
             this.panel31.Name = "panel31";
@@ -969,16 +991,16 @@
             this.lblRevenue.TabIndex = 6;
             this.lblRevenue.Text = "100";
             // 
-            // label8
+            // lblPaidCount
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(42, 101);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(134, 34);
-            this.label8.TabIndex = 4;
-            this.label8.Text = "Total Revenue";
+            this.lblPaidCount.AutoSize = true;
+            this.lblPaidCount.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaidCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblPaidCount.Location = new System.Drawing.Point(28, 101);
+            this.lblPaidCount.Name = "lblPaidCount";
+            this.lblPaidCount.Size = new System.Drawing.Size(139, 34);
+            this.lblPaidCount.TabIndex = 4;
+            this.lblPaidCount.Text = "Total Revenue ";
             // 
             // panel26
             // 
@@ -1086,7 +1108,7 @@
             // 
             // panel25
             // 
-            this.panel25.Controls.Add(this.lblAroom);
+            this.panel25.Controls.Add(this.lblTroom);
             this.panel25.Controls.Add(this.label5);
             this.panel25.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel25.Location = new System.Drawing.Point(101, 3);
@@ -1094,27 +1116,27 @@
             this.panel25.Size = new System.Drawing.Size(220, 152);
             this.panel25.TabIndex = 2;
             // 
-            // lblAroom
+            // lblTroom
             // 
-            this.lblAroom.AutoSize = true;
-            this.lblAroom.Font = new System.Drawing.Font("Myanmar Text", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAroom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.lblAroom.Location = new System.Drawing.Point(67, 44);
-            this.lblAroom.Name = "lblAroom";
-            this.lblAroom.Size = new System.Drawing.Size(87, 62);
-            this.lblAroom.TabIndex = 6;
-            this.lblAroom.Text = "100";
+            this.lblTroom.AutoSize = true;
+            this.lblTroom.Font = new System.Drawing.Font("Myanmar Text", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTroom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
+            this.lblTroom.Location = new System.Drawing.Point(67, 44);
+            this.lblTroom.Name = "lblTroom";
+            this.lblTroom.Size = new System.Drawing.Size(87, 62);
+            this.lblTroom.TabIndex = 6;
+            this.lblTroom.Text = "100";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(41, 104);
+            this.label5.Location = new System.Drawing.Point(51, 104);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(154, 34);
+            this.label5.Size = new System.Drawing.Size(119, 34);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Available Rooms";
+            this.label5.Text = "Total Rooms";
             // 
             // panel20
             // 
@@ -1252,17 +1274,6 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Total Employee";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(8, 46);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(448, 23);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "Overview of employees, guests, rooms, bookings, and revenue in real time.";
-            // 
             // FormAdministration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1297,6 +1308,7 @@
             this.panel15.PerformLayout();
             this.panel16.ResumeLayout(false);
             this.panel16.PerformLayout();
+            this.panel45.ResumeLayout(false);
             this.panel17.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.panel42.ResumeLayout(false);
@@ -1417,21 +1429,22 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblPendingCount;
+        private System.Windows.Forms.Label lblPaidCount;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblEmp;
         private System.Windows.Forms.Label lblCbook;
-        private System.Windows.Forms.Label lblTbook;
+        private System.Windows.Forms.Label lblPbook;
         private System.Windows.Forms.Label lblBook;
         private System.Windows.Forms.Label lblPending;
         private System.Windows.Forms.Label lblRevenue;
         private System.Windows.Forms.Label lblOroom;
-        private System.Windows.Forms.Label lblAroom;
+        private System.Windows.Forms.Label lblTroom;
         private System.Windows.Forms.Label lblGuest;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel45;
     }
 }

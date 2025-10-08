@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace hotel_management
 {
@@ -59,6 +60,8 @@ namespace hotel_management
                 dgvPayment.Refresh();
                 dgvPayment.ClearSelection();
 
+                cmbMethod.SelectedIndex = -1;
+
                 con.Close();
             }
 
@@ -68,5 +71,116 @@ namespace hotel_management
             }
         }
 
+
+
+
+        private void dgvBooking_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            txtBookingID.Text = dgvBooking.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtBookingStatus.Text = dgvBooking.Rows[e.RowIndex].Cells[5].Value.ToString();
+
+            if (txtBookingStatus.Text == "Pending" || txtBookingStatus.Text == "Confirmed")
+            {
+                pnlCancelBooking.Enabled = true;
+            }
+            else 
+            {
+                pnlCancelBooking.Enabled = false;
+            }
+        }
+
+        private void btnCancelBooking_Click(object sender, EventArgs e)
+        {
+            string id = txtBookingID.Text;
+            string status = "Cancelled";
+
+            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
+            if (result == DialogResult.No)
+                return;
+
+            try
+            {
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
+
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"update  Booking set Status='{status}' where BookingID='{id}'";
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Booking Cancelled");
+
+                this.LoadData();
+                dgvBooking.ClearSelection();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
+
+
+        private void dgvPayment_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            txtBillingID.Text = dgvPayment.Rows[e.RowIndex].Cells[0].Value.ToString();
+            txtAmount.Text = dgvPayment.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtBillingStatus.Text = dgvPayment.Rows[e.RowIndex].Cells[4].Value.ToString();
+            cmbMethod.Text = dgvPayment.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+            if (txtBillingStatus.Text == "Pending")
+            {
+                pnlBillPay.Enabled = true;
+            }
+            else
+            {
+                pnlBillPay.Enabled = false;
+            }
+        }
+
+        private void btnPayNow_Click(object sender, EventArgs e)
+        {
+            if(cmbMethod.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a payment method.");
+            }
+
+            string id = txtBillingID.Text; 
+            string method = cmbMethod.Text;
+            string status = "Paid";
+
+            try
+            {
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
+
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"update Bills set PaymentMethod='{method}', Status='{status}' where BillsID='{id}'";
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Payment Completed");
+
+                this.LoadData();
+                dgvBooking.ClearSelection();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

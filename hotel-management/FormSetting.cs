@@ -177,7 +177,7 @@ namespace hotel_management
                 }
                 else
                 {
-                    cmd.CommandText = $"update UserInfo set Password={npass} where UserID={id}";
+                    cmd.CommandText = $"update UserInfo set Password= '{npass}' where UserID='{id}'";
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Password Updated");
                 }

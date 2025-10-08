@@ -24,6 +24,35 @@ namespace hotel_management
             this.LoadBookingData();
         }
 
+        private void defProperties()  //Properties Enable=false
+        {
+            txtID.Enabled = false;
+            txtGID.Enabled = false;
+            btnSearchGID.Enabled = false;
+            txtGname.Enabled = false;
+            txtPhone.Enabled = false;
+            dateCkIn.Enabled = false;
+            dateCkOut.Enabled = false;
+            cmbType.Enabled = false;
+            btnSearchRoom.Enabled = false;
+            cmbRoom.Enabled = false;
+            cmbStatus.Enabled = false;
+
+            txtGID.Text = "";
+            txtGname.Text = "";
+            txtPhone.Text = "";
+
+            dateCkIn.Value = DateTime.Today;
+            dateCkOut.Value = DateTime.Today;
+
+            cmbType.SelectedIndex = -1;
+            cmbRoom.SelectedIndex = -1;
+            cmbStatus.SelectedIndex = -1;
+        }
+
+
+
+
         private void LoadBookingData()  //load done
         {
             try
@@ -34,7 +63,9 @@ namespace hotel_management
 
                 var cmd = new SqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = $"select Booking.BookingID 'BookingID' , UserInfo.Fullname 'Fullname', UserInfo.UserID 'UserID' , UserInfo.Phone 'Phone', RoomType.RoomType 'RoomType', Rooms.RoomNo 'RoomNo', Booking.CheckIN 'CheckIn', Booking.CheckOut 'CheckOut', Booking.Status 'Status', RoomType.RoomTypeID 'RoomTypeID', Rooms.RoomID 'RoomID' from Booking inner join UserInfo on Booking.UserID=UserInfo.UserID inner join Rooms on Booking.RoomID=Rooms.RoomID inner join RoomType on RoomType.RoomTypeID=Rooms.RoomTypeID; select * from RoomType; select * from Rooms;";
+                cmd.CommandText = $"select Booking.BookingID , UserInfo.Fullname, UserInfo.UserID , UserInfo.Phone, RoomType.RoomType, Rooms.RoomNo, Booking.CheckIN, Booking.CheckOut, Booking.Status, RoomType.RoomTypeID, Rooms.RoomID from Booking inner join UserInfo on Booking.UserID=UserInfo.UserID inner join Rooms on Booking.RoomID=Rooms.RoomID inner join RoomType on RoomType.RoomTypeID=Rooms.RoomTypeID;\r\n" +
+                        $" select * from RoomType;\r\n" +
+                        $" select * from Rooms";
 
                 DataSet ds = new DataSet();
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -53,8 +84,6 @@ namespace hotel_management
                 cmbRoom.DisplayMember = "RoomNo";
                 cmbRoom.ValueMember = "RoomID";
 
-                cmbType.SelectedIndex = -1;
-                cmbRoom.SelectedIndex = -1;
 
                 con.Close();
             }
@@ -77,28 +106,16 @@ namespace hotel_management
             txtGID.Text = dgvBooking.Rows[e.RowIndex].Cells[2].Value.ToString();
             txtPhone.Text = dgvBooking.Rows[e.RowIndex].Cells[3].Value.ToString();
 
+            cmbStatus.Text = dgvBooking.Rows[e.RowIndex].Cells[8].Value.ToString();
             cmbType.SelectedValue = dgvBooking.Rows[e.RowIndex].Cells[9].Value.ToString();
             cmbRoom.SelectedValue = dgvBooking.Rows[e.RowIndex].Cells[10].Value.ToString();
-            cmbStatus.Text = dgvBooking.Rows[e.RowIndex].Cells[8].Value.ToString();
 
             dateCkIn.Value = Convert.ToDateTime(dgvBooking.Rows[e.RowIndex].Cells[6].Value);
             dateCkOut.Value = Convert.ToDateTime(dgvBooking.Rows[e.RowIndex].Cells[7].Value);
-
         }
 
-        private void defProperties()  //Properties Enable=false
-        {
-            txtID.Enabled = false;
-            txtGID.Enabled = false;
-            btnSearchGID.Enabled = false;
-            txtGname.Enabled = false;
-            txtPhone.Enabled = false;
-            dateCkIn.Enabled = false;
-            dateCkOut.Enabled = false;
-            cmbType.Enabled = false;
-            cmbRoom.Enabled = false;
-            cmbStatus.Enabled = false;
-        }
+
+
 
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -126,26 +143,77 @@ namespace hotel_management
             dateCkIn.Enabled = true;
             dateCkOut.Enabled = true;
             cmbType.Enabled = true;
+            btnSearchRoom.Enabled = true;
+            btnSave.Enabled = true;           
+
+        }
+
+
+
+
+        private void btnSearchGID_Click(object sender, EventArgs e)  //find the guest
+        {
+            try
+            {
+                string guestID = txtGID.Text;
+
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
+
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"select UserInfo.Fullname,UserInfo.Phone from UserInfo where UserInfo.UserID='{guestID}'";
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                adp.Fill(dt);
+
+                if (dt.Rows.Count != 1)
+                {
+                    MessageBox.Show("Guest not found");
+                    return;
+                }
+                txtGname.Text = dt.Rows[0]["Fullname"].ToString();
+                txtPhone.Text = dt.Rows[0]["Phone"].ToString();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnSearchRoom_Click(object sender, EventArgs e)
+        {
+            this.LoadAvailableRoom();
             cmbRoom.Enabled = true;
             cmbStatus.Enabled = true;
-            btnSave.Enabled = true;
-
         }
-
-
-        private void cmbType_SelectedIndexChanged(object sender, EventArgs e)  //selecting roomtype
+        private void LoadAvailableRoom()
         {
-            if (cmbType.SelectedValue == null || cmbType.SelectedValue is DataRowView)
+            string checkIn = dateCkIn.Value.ToString("yyyy-MMM-dd");
+            string checkOut = dateCkOut.Value.ToString("yyyy-MMM-dd");
+            string typeID = "";
+
+            if (dateCkOut.Value <= dateCkIn.Value)
+            {
+                MessageBox.Show("Check-out date must be after check-in date.");
                 return;
+            }
 
-            int typeID = Convert.ToInt32(cmbType.SelectedValue);
+            if (cmbType.SelectedValue == null)
+            {
+                MessageBox.Show("Please select a room type");
+                return;
+            }
+            else
+            {
+                typeID = cmbType.SelectedValue.ToString();
+            }
 
-            cmbRoom.DataSource = null;
-            this.LoadAvailableRooms(typeID);
-        }
 
-        private void LoadAvailableRooms(int typeID)  //available rooms based on room type
-        {
             try
             {
                 var con = new SqlConnection();
@@ -154,7 +222,7 @@ namespace hotel_management
 
                 var cmd = new SqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = $"select RoomID, RoomNo from Rooms where RoomTypeID={typeID} and Status='Available'";
+                cmd.CommandText = $"select Rooms.RoomID, Rooms.RoomNo from Rooms where Rooms.RoomTypeID = '{typeID}' and Rooms.Status = 'Available' and Rooms.RoomID NOT IN (select Booking.RoomID from Booking where Booking.Status IN ('Confirmed','Checked-In') and (Booking.CheckIN <= '{checkOut}' and Booking.CheckOut >= '{checkIn}'))";
 
                 DataTable dt = new DataTable();
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -163,7 +231,6 @@ namespace hotel_management
                 cmbRoom.DataSource = dt;
                 cmbRoom.DisplayMember = "RoomNo";
                 cmbRoom.ValueMember = "RoomID";
-                cmbRoom.SelectedIndex = -1;
 
                 con.Close();
             }
@@ -172,7 +239,12 @@ namespace hotel_management
             {
                 MessageBox.Show(ex.Message);
             }
+
         }
+
+
+
+
 
         private void btnUpdate_Click(object sender, EventArgs e)  //update btn click trigger-- done
         {
@@ -186,8 +258,7 @@ namespace hotel_management
             dateCkIn.Enabled = true;
             dateCkOut.Enabled = true;
             cmbType.Enabled = true;
-            cmbRoom.Enabled = true;
-            cmbStatus.Enabled = true;
+            btnSearchRoom.Enabled = true;
             btnSave.Enabled = true;
 
         }
@@ -204,8 +275,8 @@ namespace hotel_management
             string id = txtID.Text;
             string guestID = txtGID.Text;
             string roomID = cmbRoom.SelectedValue.ToString();
-            string checkIn = dateCkIn.Value.ToString("yyyy-MM-dd HH:mm:ss");
-            string checkOut = dateCkOut.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            string checkIn = dateCkIn.Value.ToString("yyyy-MM-dd");
+            string checkOut = dateCkOut.Value.ToString("yyyy-MM-dd");
             string status = cmbStatus.Text;
 
             string query = "";
@@ -217,7 +288,7 @@ namespace hotel_management
             }
             else
             {
-                query = $"update  Booking set  UserID='{guestID}', RoomID='{roomID}', CheckIN='{checkIn}', CheckOut='{checkOut}', Status='{status}'  Where BookingID='{id}'";
+                query = $"update Booking set RoomID='{roomID}', CheckIN='{checkIn}', CheckOut='{checkOut}', Status='{status}'  Where BookingID='{id}'";
             }
 
             try
@@ -233,7 +304,6 @@ namespace hotel_management
 
                 MessageBox.Show("Saved");
                 this.LoadBookingData();
-                this.NewData();
                 this.defProperties(); 
 
                 con.Close();
@@ -269,7 +339,6 @@ namespace hotel_management
 
                 MessageBox.Show("Deleted");
                 this.LoadBookingData();
-                this.NewData();
                 this.defProperties();
 
                 con.Close();
@@ -280,40 +349,12 @@ namespace hotel_management
             }
         }
 
-        private void btnSearchGID_Click(object sender, EventArgs e)  //find the guest
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
-            try
-            {
-                int guestID = Int32.Parse(txtGID.Text);
-
-                var con = new SqlConnection();
-                con.ConnectionString = ApplicationHelper.connectionPath;
-                con.Open();
-
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = $"select UserInfo.Fullname,UserInfo.Phone from UserInfo where UserInfo.UserID={guestID}";
-
-                DataTable dt = new DataTable();
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                adp.Fill(dt);
-
-                if (dt.Rows.Count !=1)
-                {
-                    txtGname.Text = "";
-                    txtPhone.Text = "";
-                    MessageBox.Show("Guest not found");
-                    return;
-                }
-                txtGname.Text = dt.Rows[0]["Fullname"].ToString();
-                txtPhone.Text = dt.Rows[0]["Phone"].ToString();
-
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            this.defProperties();
+            this.LoadBookingData();
         }
+
+
     }
 }

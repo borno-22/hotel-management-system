@@ -52,6 +52,7 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnSearchRoom = new System.Windows.Forms.Button();
             this.btnSearchGID = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txtGname = new System.Windows.Forms.TextBox();
@@ -77,11 +78,13 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
             this.panel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -281,6 +284,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(238)))), ((int)(((byte)(238)))));
+            this.panel6.Controls.Add(this.btnRefresh);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 56);
             this.panel6.Name = "panel6";
@@ -310,6 +314,7 @@
             // panel3
             // 
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnSearchRoom);
             this.panel3.Controls.Add(this.btnSearchGID);
             this.panel3.Controls.Add(this.label10);
             this.panel3.Controls.Add(this.txtGname);
@@ -336,6 +341,22 @@
             this.panel3.Size = new System.Drawing.Size(294, 462);
             this.panel3.TabIndex = 2;
             // 
+            // btnSearchRoom
+            // 
+            this.btnSearchRoom.BackColor = System.Drawing.Color.White;
+            this.btnSearchRoom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSearchRoom.BackgroundImage")));
+            this.btnSearchRoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnSearchRoom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchRoom.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchRoom.ForeColor = System.Drawing.Color.Transparent;
+            this.btnSearchRoom.Location = new System.Drawing.Point(258, 262);
+            this.btnSearchRoom.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSearchRoom.Name = "btnSearchRoom";
+            this.btnSearchRoom.Size = new System.Drawing.Size(27, 26);
+            this.btnSearchRoom.TabIndex = 69;
+            this.btnSearchRoom.UseVisualStyleBackColor = false;
+            this.btnSearchRoom.Click += new System.EventHandler(this.btnSearchRoom_Click);
+            // 
             // btnSearchGID
             // 
             this.btnSearchGID.BackColor = System.Drawing.Color.White;
@@ -344,7 +365,7 @@
             this.btnSearchGID.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchGID.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchGID.ForeColor = System.Drawing.Color.Transparent;
-            this.btnSearchGID.Location = new System.Drawing.Point(234, 38);
+            this.btnSearchGID.Location = new System.Drawing.Point(255, 41);
             this.btnSearchGID.Margin = new System.Windows.Forms.Padding(2);
             this.btnSearchGID.Name = "btnSearchGID";
             this.btnSearchGID.Size = new System.Drawing.Size(27, 26);
@@ -372,7 +393,7 @@
             this.txtGname.Location = new System.Drawing.Point(106, 81);
             this.txtGname.Margin = new System.Windows.Forms.Padding(2);
             this.txtGname.Name = "txtGname";
-            this.txtGname.Size = new System.Drawing.Size(158, 32);
+            this.txtGname.Size = new System.Drawing.Size(145, 32);
             this.txtGname.TabIndex = 67;
             // 
             // txtPhone
@@ -382,7 +403,7 @@
             this.txtPhone.Location = new System.Drawing.Point(106, 127);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(2);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(158, 32);
+            this.txtPhone.Size = new System.Drawing.Size(145, 32);
             this.txtPhone.TabIndex = 65;
             // 
             // label9
@@ -403,7 +424,7 @@
             this.dateCkOut.Font = new System.Drawing.Font("Myanmar Text", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateCkOut.Location = new System.Drawing.Point(106, 213);
             this.dateCkOut.Name = "dateCkOut";
-            this.dateCkOut.Size = new System.Drawing.Size(158, 28);
+            this.dateCkOut.Size = new System.Drawing.Size(145, 28);
             this.dateCkOut.TabIndex = 64;
             // 
             // dateCkIn
@@ -412,7 +433,7 @@
             this.dateCkIn.Font = new System.Drawing.Font("Myanmar Text", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateCkIn.Location = new System.Drawing.Point(106, 172);
             this.dateCkIn.Name = "dateCkIn";
-            this.dateCkIn.Size = new System.Drawing.Size(158, 28);
+            this.dateCkIn.Size = new System.Drawing.Size(145, 28);
             this.dateCkIn.TabIndex = 63;
             // 
             // cmbRoom
@@ -423,7 +444,7 @@
             this.cmbRoom.FormattingEnabled = true;
             this.cmbRoom.Location = new System.Drawing.Point(106, 302);
             this.cmbRoom.Name = "cmbRoom";
-            this.cmbRoom.Size = new System.Drawing.Size(158, 32);
+            this.cmbRoom.Size = new System.Drawing.Size(145, 32);
             this.cmbRoom.TabIndex = 60;
             // 
             // label8
@@ -446,10 +467,9 @@
             this.cmbType.FormattingEnabled = true;
             this.cmbType.Location = new System.Drawing.Point(106, 256);
             this.cmbType.Name = "cmbType";
-            this.cmbType.Size = new System.Drawing.Size(158, 32);
+            this.cmbType.Size = new System.Drawing.Size(145, 32);
             this.cmbType.TabIndex = 58;
             this.cmbType.Tag = "";
-            this.cmbType.SelectedIndexChanged += new System.EventHandler(this.cmbType_SelectedIndexChanged);
             // 
             // txtID
             // 
@@ -476,7 +496,7 @@
             "Cancelled"});
             this.cmbStatus.Location = new System.Drawing.Point(106, 348);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(158, 32);
+            this.cmbStatus.Size = new System.Drawing.Size(145, 32);
             this.cmbStatus.TabIndex = 57;
             // 
             // label7
@@ -495,7 +515,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label6.Location = new System.Drawing.Point(36, 351);
+            this.label6.Location = new System.Drawing.Point(40, 353);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(60, 29);
@@ -525,7 +545,7 @@
             this.txtGID.Location = new System.Drawing.Point(106, 35);
             this.txtGID.Margin = new System.Windows.Forms.Padding(2);
             this.txtGID.Name = "txtGID";
-            this.txtGID.Size = new System.Drawing.Size(158, 32);
+            this.txtGID.Size = new System.Drawing.Size(145, 32);
             this.txtGID.TabIndex = 51;
             // 
             // label2
@@ -643,6 +663,19 @@
             this.btnDel.UseVisualStyleBackColor = false;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
+            this.btnRefresh.Location = new System.Drawing.Point(697, 7);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(91, 34);
+            this.btnRefresh.TabIndex = 13;
+            this.btnRefresh.Text = "REFRESH";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // FormBookingMG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -661,6 +694,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).EndInit();
             this.panel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -702,6 +736,12 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtGname;
+        private System.Windows.Forms.Button btnSearchGID;
+        private System.Windows.Forms.Button btnSearchRoom;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -713,10 +753,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtGname;
-        private System.Windows.Forms.Button btnSearchGID;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
