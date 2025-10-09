@@ -19,6 +19,7 @@ namespace hotel_management
             InitializeComponent();
         }
 
+
         private void FormBillingMG_Load(object sender, EventArgs e)
         {
             this.defProperties();
@@ -176,7 +177,7 @@ namespace hotel_management
         {
             try
             {
-                int bookingID = Int32.Parse(txtBookingID.Text);
+                string bookingID = txtBookingID.Text;
 
                 var con = new SqlConnection();
                 con.ConnectionString = ApplicationHelper.connectionPath;
@@ -184,12 +185,14 @@ namespace hotel_management
 
                 var cmd = new SqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = $"select Booking.Duration*RoomType.Price from Booking inner join Rooms on Booking.RoomID = Rooms.RoomID inner join RoomType on Rooms.RoomTypeID = RoomType.RoomTypeID where Booking.BookingID={bookingID}";
+                cmd.CommandText = $"select Booking.Duration*RoomType.Price from Booking inner join Rooms on Booking.RoomID = Rooms.RoomID inner join RoomType on Rooms.RoomTypeID = RoomType.RoomTypeID where Booking.BookingID='{bookingID}'";
 
-                var result = cmd.ExecuteScalar();
-                if (result != null)
+                DataTable dt = new DataTable();
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                adp.Fill(dt);
+                if (dt.Rows.Count != 0)
                 {
-                    txtAmount.Text = result.ToString();
+                    txtAmount.Text = dt.Rows[0][0].ToString();
                 }
                 else
                 {
