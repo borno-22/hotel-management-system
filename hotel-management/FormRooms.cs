@@ -64,7 +64,7 @@ namespace hotel_management
             if (roomno == "")
             {
                 count++;
-                MessageBox.Show("please fill the input");
+                MessageBox.Show("Please fill in all the fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             if (count == 0)
             {
@@ -80,7 +80,7 @@ namespace hotel_management
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("saved");
+                    MessageBox.Show("Record saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LoadRooms();
                     this.NewData();
 
@@ -99,7 +99,7 @@ namespace hotel_management
             string id= txtID.Text;
             if (id == "Auto Generate")
             {
-                MessageBox.Show("Please select The Row First");
+                MessageBox.Show("Please select a row first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -114,10 +114,10 @@ namespace hotel_management
             string id = txtID.Text;
             if (id == "Auto Generate")
             {
-                MessageBox.Show("Please select The Row First");
+                MessageBox.Show("Please select a row first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
                 return;
 
@@ -132,7 +132,7 @@ namespace hotel_management
                 cmd.CommandText = $"delete from Rooms where RoomID={id}";
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Deleted");
+                MessageBox.Show("Record deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.LoadRooms();
                 this.NewData();
 

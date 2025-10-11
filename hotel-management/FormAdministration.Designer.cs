@@ -544,7 +544,6 @@
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(1048, 54);
             this.panel15.TabIndex = 0;
-            this.panel15.Paint += new System.Windows.Forms.PaintEventHandler(this.panel15_Paint);
             // 
             // label7
             // 
@@ -1020,7 +1019,6 @@
             this.panel31.Name = "panel31";
             this.panel31.Size = new System.Drawing.Size(219, 154);
             this.panel31.TabIndex = 2;
-            this.panel31.Paint += new System.Windows.Forms.PaintEventHandler(this.panel31_Paint);
             // 
             // lblRevenue
             // 

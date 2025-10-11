@@ -18,16 +18,34 @@ namespace hotel_management
             InitializeComponent();
         }
 
+        //
+        //go to previous page
+        //
+        private void FormCustomer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (this.Owner != null)
+                this.Owner.Show();
+        }
+
+        //
+        //customer dashboard
+        //
         private void FormCustomer_Load(object sender, EventArgs e)
         {
             this.LoadData();
         }
 
+        //
+        //btn refresh
+        //
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             this.LoadData();
         }
 
+        //
+        //load all the labels
+        //
         private void LoadData()
         {
             string fullname = ApplicationHelper.FullName;
@@ -66,17 +84,9 @@ namespace hotel_management
             }
         }
 
-
-
-
-        private void FormCustomer_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (this.Owner != null)
-                this.Owner.Show();
-        }
-
-
-
+        //
+        //go to new booking
+        //
         private void btnBooking_Click(object sender, EventArgs e)
         {
             FormCusBooking cusBooking = new FormCusBooking();
@@ -84,6 +94,9 @@ namespace hotel_management
             this.Hide();
         }
 
+        //
+        //go to customer history
+        //
         private void btnHistory_Click(object sender, EventArgs e)
         {
             FormCusHistory cusHistory = new FormCusHistory();
@@ -91,6 +104,9 @@ namespace hotel_management
             this.Hide();
         }
 
+        //
+        //logout
+        //
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             if (this.Owner != null)
@@ -100,12 +116,14 @@ namespace hotel_management
             }
         }
 
+        //
+        //settings
+        //
         private void btnSettings_Click(object sender, EventArgs e)
         {
             FormSetting setting = new FormSetting();
             setting.ShowDialog();
         }
-
 
     }
 }

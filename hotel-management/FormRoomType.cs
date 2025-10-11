@@ -18,11 +18,6 @@ namespace hotel_management
             InitializeComponent();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void FormRoomType_Load(object sender, EventArgs e)
 
         {
@@ -127,7 +122,7 @@ namespace hotel_management
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();
 
-                    MessageBox.Show("saved");
+                    MessageBox.Show("Record saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.LoadRoomType();
                     this.NewData();
 
@@ -148,7 +143,7 @@ namespace hotel_management
             string id = txtID.Text;
             if (id == "Auto Generate")
             {
-                MessageBox.Show("Please select The Row First");
+                MessageBox.Show("Please select a row first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
@@ -158,10 +153,10 @@ namespace hotel_management
             string id = txtID.Text;
             if (id == "Auto Generate")
             {
-                MessageBox.Show("Please select The Row First");
+                MessageBox.Show("Please select a row first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
                 return;
 
@@ -176,7 +171,7 @@ namespace hotel_management
                 cmd.CommandText = $"delete from RoomType where RoomTypeID={id}";
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Deleted");
+                MessageBox.Show("Record deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.LoadRoomType();
                 this.NewData();
 

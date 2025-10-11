@@ -19,18 +19,33 @@ namespace hotel_management
             InitializeComponent();
         }
 
+
+        //
+        // Load Customer Billing info
+        //
         private void FormCusBilling_Load(object sender, EventArgs e)
         {
+            if (ApplicationHelper.BookingStaus == "Checked-Out")
+            {
+                btnPayLater.Visible = false;
+            }
             txtBookingID.Text = ApplicationHelper.BookingID;
             txtAmount.Text = ApplicationHelper.Amount;
         }
 
 
+        //
+        //paynow
+        //
         private void btnPayNow_Click(object sender, EventArgs e)
         {
             this.PayNow();
         }
 
+
+        //
+        // btn paynow click trigger
+        //
         private void PayNow()
         {
             string bookingID = ApplicationHelper.BookingID;
@@ -40,7 +55,7 @@ namespace hotel_management
 
             if (method == "")
             {
-                MessageBox.Show("Please select Payment Method.");
+                MessageBox.Show("Please select a payment method.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -55,7 +70,7 @@ namespace hotel_management
                 cmd.CommandText = $"insert into Bills (BookingID,TotalAmount,PaymentMethod,Status) values('{bookingID}','{amount}','{method}','{status}')";
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Payment Successful");
+                MessageBox.Show("Payment successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 con.Close();
             }
@@ -69,12 +84,17 @@ namespace hotel_management
         }
 
 
-
+        //
+        // btn paylater
+        //
         private void btnPayLater_Click(object sender, EventArgs e)
         {
             this.PayLater();
         }
 
+        //
+        // btn paylater trigger
+        //
         private void PayLater()
         {
             string bookingID = ApplicationHelper.BookingID;
@@ -93,7 +113,8 @@ namespace hotel_management
                 cmd.CommandText = $"insert into Bills (BookingID,TotalAmount,PaymentMethod,Status) values('{bookingID}','{amount}','{method}','{status}')";
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Pending payment");
+                MessageBox.Show("Payment is pending.", "Pending", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 con.Close();
             }
 

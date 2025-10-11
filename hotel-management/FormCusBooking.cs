@@ -18,6 +18,9 @@ namespace hotel_management
             InitializeComponent();
         }
 
+        //
+        //close customer booking
+        //
         private void FormCusBooking_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.Owner != null)
@@ -25,13 +28,19 @@ namespace hotel_management
         }
 
 
-
+        //
+        //load Customer booking
+        //
         private void FormCusBooking_Load(object sender, EventArgs e)
         {
             this.LoadRoomType();
             this.defProperties();
         }
 
+
+        //
+        // available roomtype
+        //
         private void LoadRoomType()
         {
             try
@@ -61,6 +70,10 @@ namespace hotel_management
             }
         }
 
+
+        //
+        // set some default properties
+        //
         private void defProperties()
         {
             cmbRoomNo.Enabled = false;
@@ -69,25 +82,30 @@ namespace hotel_management
 
             cmbType.SelectedIndex = -1;
             cmbRoomNo.SelectedIndex = -1;
-
         }
 
-
-
-
-
+        //
+        //if roomtype change --- roomno will change
+        //
         private void cmbType_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbRoomNo.SelectedIndex = -1;
             cmbRoomNo.Enabled = false;
         }
 
+
+        //
+        //btn search room
+        //
         private void btnSearchRoom_Click(object sender, EventArgs e)
         {
             this.LoadPrice();
             this.LoadAvailableRoom();
         }
 
+        //
+        //find available room
+        //
         private void LoadAvailableRoom()
         {
             string checkIn = dateCkIn.Value.ToString("yyyy-MMM-dd");
@@ -96,13 +114,13 @@ namespace hotel_management
 
             if (dateCkOut.Value <= dateCkIn.Value)
             {
-                MessageBox.Show("Check-out date must be after check-in date.");
+                MessageBox.Show("Check-out date must be after the check-in date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (cmbType.SelectedValue == null)
             {
-                MessageBox.Show("Please select a room type");
+                MessageBox.Show("Please select a room type.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
@@ -145,6 +163,10 @@ namespace hotel_management
             }
         }
 
+
+        //
+        //load room price
+        //
         private void LoadPrice()
         {
             int duration = (dateCkOut.Value.Date - dateCkIn.Value.Date).Days;
@@ -184,18 +206,22 @@ namespace hotel_management
         }
 
 
-
-
+        //
+        //btn submit
+        //
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             this.Submit();
         }
 
+        //
+        // btn submit trigger
+        //
         private void Submit()
         {
             if (cmbRoomNo.SelectedIndex==-1)
             {
-                MessageBox.Show("Please input all field");
+                MessageBox.Show("Please fill in all fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -216,8 +242,7 @@ namespace hotel_management
                 cmd.CommandText = $"insert into Booking (UserID,RoomID,CheckIN,CheckOut,Status) values ('{guestID}','{roomID}','{checkIn}','{checkOut}','{status}')";
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Request sent");
-
+                MessageBox.Show("Booking request sent successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 cmd.CommandText = $"select Booking.BookingID from Booking where UserID='{guestID}' and RoomID='{roomID}' and CheckIN='{checkIn}' and CheckOut='{checkOut}'";
                 DataTable dt = new DataTable();
@@ -237,7 +262,5 @@ namespace hotel_management
                 MessageBox.Show(ex.Message);
             }
         }
-
-
     }
 }

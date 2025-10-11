@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,9 @@ namespace hotel_management
             InitializeComponent();
         }
 
-
+        //
+        //Role based load
+        //
         private void FormBillingMG_Load(object sender, EventArgs e)
         {
             this.defProperties();
@@ -29,18 +32,30 @@ namespace hotel_management
                 btnDel.Visible=false;
         }
 
-        private void defProperties()  //Properties Enable=false
+        //
+        //some default properties
+        //
+        private void defProperties()
         {
+            txtID.Text = "Auto Generate";
+            txtBookingID.Text = "";
+            txtAmount.Text = "";
+            cmbMethod.SelectedIndex = -1;
+            cmbStatus.SelectedIndex = -1;
+
             txtID.Enabled = false;
-            txtBookingID.Enabled = false;
+            txtBookingID.Enabled = true;
+            btnSearchBkID.Enabled = true;
             txtAmount.Enabled = false;
             cmbMethod.Enabled = false;
             cmbStatus.Enabled = false;
-            btnSearchBkID.Enabled = false;
             btnSave.Enabled = false;
         }
 
-        private void LoadBillingData()  // load bills
+        //
+        //load dgv
+        //
+        private void LoadBillingData()
         {
             try
             {
@@ -69,6 +84,18 @@ namespace hotel_management
             }
         }
 
+        //
+        //btn refresh
+        //
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            this.LoadBillingData();
+            this.defProperties();
+        }
+
+        //
+        //dgv click
+        //
         private void dgvBilling_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             this.defProperties();
@@ -84,37 +111,54 @@ namespace hotel_management
 
         }
 
-
-        private void btnNew_Click(object sender, EventArgs e)
+        //
+        //search total amount -- from booking id
+        //
+        private void btnSearchBkID_Click(object sender, EventArgs e)
         {
-            this.NewData();
+            try
+            {
+                string bookingID = txtBookingID.Text;
+                txtBookingID.Enabled = false;
+
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
+
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"select * from Bills where BookingID='{bookingID}'";
+
+                DataTable dt = new DataTable();
+                SqlDataAdapter adp = new SqlDataAdapter(cmd);
+                adp.Fill(dt);
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("Invalid Booking ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                txtID.Text = dt.Rows[0]["BillsID"].ToString();
+                txtAmount.Text = dt.Rows[0]["TotalAmount"].ToString();
+                cmbMethod.Text = dt.Rows[0]["PaymentMethod"].ToString();
+                cmbStatus.Text = dt.Rows[0]["Status"].ToString();
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        private void NewData()  //when new is clicked
-        {
-            dgvBilling.ClearSelection();
-
-            txtID.Text = "Auto Generate";
-            txtBookingID.Text = "";
-            txtAmount.Text = "";
-
-            cmbMethod.SelectedIndex = -1;
-            cmbStatus.SelectedIndex = -1;
-
-            txtBookingID.Enabled = true;
-            cmbMethod.Enabled = true;
-            cmbStatus.Enabled = true;
-            btnSearchBkID.Enabled = true;
-            btnSave.Enabled = true;
-
-        }
-
+        //
+        //btn update click trigger
+        //
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             string id = txtID.Text;
             if (id == "Auto Generate")
             {
-                MessageBox.Show("Please select The Row First");
+                MessageBox.Show("Please select a row first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -123,7 +167,20 @@ namespace hotel_management
             btnSave.Enabled = true;
         }
 
+        //
+        // btn save
+        //
         private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.Save();
+            this.LoadBillingData();
+            this.defProperties();
+        }
+
+        //
+        //btn save click trigger
+        //
+        private void Save()
         {
             string id = txtID.Text;
             string bookingID = txtBookingID.Text;
@@ -133,20 +190,8 @@ namespace hotel_management
 
             if (bookingID == "" || method == "" || status == "")
             {
-                MessageBox.Show("Please fill all the inputs");
+                MessageBox.Show("Please fill in all the fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
-
-            string query = "";
-
-            if (id == "Auto Generate")
-
-            {
-                query = $"insert into Bills (BookingID,TotalAmount,PaymentMethod,Status) values ('{bookingID}','{amount}','{method}','{status}') ";
-            }
-            else
-            {
-                query = $"update Bills set BookingID='{bookingID}', TotalAmount='{amount}', PaymentMethod='{method}', Status='{status}'  Where BillsID={id}";
             }
 
             try
@@ -157,48 +202,11 @@ namespace hotel_management
 
                 var cmd = new SqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = query;
+                cmd.CommandText = $"update Bills set BookingID='{bookingID}', TotalAmount='{amount}', PaymentMethod='{method}', Status='{status}'  Where BillsID='{id}'";
+
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Saved");
-                this.LoadBillingData();
-                this.NewData();
-
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        private void btnSearchBkID_Click(object sender, EventArgs e)  //search total amount
-        {
-            try
-            {
-                string bookingID = txtBookingID.Text;
-
-                var con = new SqlConnection();
-                con.ConnectionString = ApplicationHelper.connectionPath;
-                con.Open();
-
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = $"select Booking.Duration*RoomType.Price from Booking inner join Rooms on Booking.RoomID = Rooms.RoomID inner join RoomType on Rooms.RoomTypeID = RoomType.RoomTypeID where Booking.BookingID='{bookingID}'";
-
-                DataTable dt = new DataTable();
-                SqlDataAdapter adp = new SqlDataAdapter(cmd);
-                adp.Fill(dt);
-                if (dt.Rows.Count != 0)
-                {
-                    txtAmount.Text = dt.Rows[0][0].ToString();
-                }
-                else
-                {
-                    MessageBox.Show("Invalid Booking ID");
-                    return;
-                }
+                MessageBox.Show("Record saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 con.Close();
             }
@@ -208,15 +216,28 @@ namespace hotel_management
             }
         }
 
+        //
+        // btn delete
         private void btnDel_Click(object sender, EventArgs e)
         {
+            this.Delete();
+            this.LoadBillingData();
+            this.defProperties();
+        }
+
+        //
+        //btn click trigger
+        //
+        private void Delete()
+        {
             string id = txtID.Text;
+            string bookingID = txtBookingID.Text;
             if (id == "Auto Generate")
             {
-                MessageBox.Show("Please select The Row First");
+                MessageBox.Show("Please select a row first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
                 return;
 
@@ -228,12 +249,11 @@ namespace hotel_management
 
                 var cmd = new SqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = $"delete from Bills where BillsID={id}";
+                cmd.CommandText = $"delete from Bills where BillsID='{id}' \r\n" +
+                    $"delete from Booking where BookingID='{bookingID}'";
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Deleted");
-                this.LoadBillingData();
-                this.NewData();
+                MessageBox.Show("Record deleted successfully!", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 con.Close();
             }
@@ -242,5 +262,7 @@ namespace hotel_management
                 MessageBox.Show(ex.Message);
             }
         }
+
+
     }
 }

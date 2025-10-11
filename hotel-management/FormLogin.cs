@@ -39,7 +39,7 @@ namespace hotel_management
 
                 if (dt.Rows.Count != 1)
                 {
-                    MessageBox.Show("Invaild usename or password");
+                    MessageBox.Show("Invalid username or password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -52,19 +52,18 @@ namespace hotel_management
                 ApplicationHelper.UserID = userID;
 
 
-                MessageBox.Show("Welcome, " + fullName);
+                MessageBox.Show($"Welcome, {fullName}!", "Greetings", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (userType == "Admin" || userType == "Receptionist")
-                {
-                    FormAdministration fa = new FormAdministration();
-                    fa.Show(this);
-                    this.Hide();
-
-                }
-                else 
+                if (userType == "Customer")
                 {
                     FormCustomer fc = new FormCustomer();
                     fc.Show(this);
+                    this.Hide();
+                }
+                else
+                {
+                    FormAdministration fa = new FormAdministration();
+                    fa.Show(this);
                     this.Hide();
                 }
 

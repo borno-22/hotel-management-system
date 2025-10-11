@@ -24,44 +24,10 @@ namespace hotel_management
                 this.Owner.Show();
         }
 
-        private int getRoleID()     //for customerSignUp
-        {
-            int roleID = 0;
-            try
-            {
-                var con = new SqlConnection();
-                con.ConnectionString = ApplicationHelper.connectionPath;
-                con.Open();
-
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = $"select RoleID from RoleType where Role = 'Customer'";
-
-                var result = cmd.ExecuteScalar();
-
-                if (result != null)
-                {
-                    roleID = Convert.ToInt32(result);
-                }
-
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            return roleID;
-        }
-
 
         private void btnSignup_Click(object sender, EventArgs e)
         {
-            int roleID=this.getRoleID();
-            if (roleID == 0) 
-            {
-                MessageBox.Show("SignUp is temporary off.");
-                return; 
-            }
+            string roleID = "3";
             string fullname = txtFname.Text;
             string email = txtEmail.Text;
             string phone = txtPhone.Text;
@@ -80,7 +46,7 @@ namespace hotel_management
 
             if (fullname == "" || email == "" || phone == "" || address == "" || password == "" || gender == "")
             {
-                MessageBox.Show("Please input every field.");
+                MessageBox.Show("Please fill in all the fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -97,7 +63,7 @@ namespace hotel_management
                 cmd.ExecuteNonQuery();
 
                 con.Close();
-                MessageBox.Show("SignUp successfull");
+                MessageBox.Show("Sign up successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

@@ -136,7 +136,6 @@
             this.dgvRoomType.Size = new System.Drawing.Size(728, 449);
             this.dgvRoomType.TabIndex = 0;
             this.dgvRoomType.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoomType_CellClick);
-            this.dgvRoomType.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel2
             // 

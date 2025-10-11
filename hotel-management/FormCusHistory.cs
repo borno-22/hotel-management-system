@@ -20,24 +20,36 @@ namespace hotel_management
             InitializeComponent();
         }
 
+        //
+        //return to prevoius page
+        //
         private void FormCusHistory_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.Owner != null)
                 this.Owner.Show();
         }
 
+        //
+        //load dgv
+        //
         private void FormCusHistory_Load(object sender, EventArgs e)
         {
             this.LoadData();
             this.defProperties();
         }
 
+        //
+        //some default properties
+        //
         private void defProperties()
         {
             pnlCancelBooking.Enabled = false;
             pnlBillPay.Enabled = false;
         }
 
+        //
+        //dgv + txt + cmb
+        //
         private void LoadData()
         {
             string id = ApplicationHelper.UserID;
@@ -78,9 +90,9 @@ namespace hotel_management
             }
         }
 
-
-
-
+        //
+        //booking dgv click
+        //
         private void dgvBooking_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -99,12 +111,15 @@ namespace hotel_management
             }
         }
 
+        //
+        //cancel booking
+        //
         private void btnCancelBooking_Click(object sender, EventArgs e)
         {
             string id = txtBookingID.Text;
             string status = "Cancelled";
 
-            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
+            var result = MessageBox.Show("Are you sure you want to proceed?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.No)
                 return;
 
@@ -132,9 +147,9 @@ namespace hotel_management
             }
         }
 
-
-
-
+        //
+        //payment dgv click
+        //
         private void dgvPayment_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -155,11 +170,14 @@ namespace hotel_management
             }
         }
 
+        //
+        //btn pay now
+        //
         private void btnPayNow_Click(object sender, EventArgs e)
         {
             if(cmbMethod.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a payment method.");
+                MessageBox.Show("Please select a payment method.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             string id = txtBillingID.Text; 
@@ -177,7 +195,7 @@ namespace hotel_management
                 cmd.CommandText = $"update Bills set PaymentMethod='{method}', Status='{status}' where BillsID='{id}'";
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Payment Completed");
+                MessageBox.Show("Payment successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.LoadData();
                 this.defProperties();

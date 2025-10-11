@@ -18,11 +18,18 @@ namespace hotel_management
             InitializeComponent();
         }
 
+        //
+        // employee info form load
+        //
         private void FormEmployeeInfo_Load(object sender, EventArgs e)
         {
-            LoadEmployeeInfo();
+            this.LoadEmployeeInfo();
+            this.defProperties();
         }
 
+        //
+        // loading dgv+cmb
+        //
         private void LoadEmployeeInfo()
         {
             try
@@ -58,8 +65,10 @@ namespace hotel_management
             }
         }
 
-
-        private void defProperties()  //Properties Enable=false
+        //
+        //some default properties
+        //
+        private void defProperties()
         {
             txtFname.Enabled = false;
             txtEmail.Enabled = false;
@@ -67,9 +76,12 @@ namespace hotel_management
             txtAddress.Enabled = false;
             cmbRole.Enabled = false;
             pnlGender.Enabled = false;
+            cmbRole.SelectedIndex = -1;
         }
 
-
+        //
+        // grid veiw click
+        //
         private void dgvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -86,20 +98,24 @@ namespace hotel_management
             {
                 rdbMale.Checked = true;
             }
-            else 
+            else
             { 
                 rdbFemale.Checked = true; 
             }
-
-            this.defProperties();
         }
 
+        //
+        //new btn
+        //
         private void btnNew_Click(object sender, EventArgs e)
         {
-            OpenData();
+            this.NewData();
         }
 
-        private void OpenData()  //when btnNew is clicked
+        //
+        //new btn click trigger
+        //
+        private void NewData()
         {
             txtID.Text = "Auto Generate";
             txtFname.Text = "";
@@ -121,6 +137,9 @@ namespace hotel_management
             dgvEmployee.ClearSelection();
         }
 
+        //
+        // update btn click trigger
+        //
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             txtFname.Enabled = true;
@@ -132,12 +151,71 @@ namespace hotel_management
             string id = txtID.Text;
             if (id == "Auto Generate")
             {
-                MessageBox.Show("Please select a employee first");
+                MessageBox.Show("Please select a row first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
         }
 
-        private void NewDataSave()  //when btnSave is clicked
+        //
+        // btn delete
+        //
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            this.Delete();
+            this.LoadEmployeeInfo();
+            this.defProperties();
+        }
+
+        //
+        // btn delete click trigger
+        //
+        private void Delete()
+        {
+            string id = txtID.Text;
+            if (id == "Auto Generate")
+            {
+                MessageBox.Show("Please select a row first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+                return;
+
+            try
+            {
+                var con = new SqlConnection();
+                con.ConnectionString = ApplicationHelper.connectionPath;
+                con.Open();
+
+                var cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandText = $"delete from UserInfo where UserID='{id}'";
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Deleted");
+
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        //
+        // btn save
+        //
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.Save();
+            this.LoadEmployeeInfo();
+            this.defProperties();
+        }
+        
+        //
+        //save function for both new+update
+        //
+        private void Save()
         {
             string query = "";
             string id = txtID.Text;
@@ -147,10 +225,10 @@ namespace hotel_management
             string gender = "";
             string address = txtAddress.Text;
             string password = txtPhone.Text;
-            int roleID = -1;
+            string roleID = "";
             if (cmbRole.SelectedValue != null)
             {
-                roleID = Convert.ToInt32(cmbRole.SelectedValue);
+                roleID = cmbRole.SelectedValue.ToString();
             }
 
             if (rdbMale.Checked)
@@ -162,9 +240,9 @@ namespace hotel_management
                 gender += "Female";
             }
 
-            if (fullname == "" || email == "" || phone == "" || gender == "" || address == "" || roleID == -1)
+            if (fullname == "" || email == "" || phone == "" || gender == "" || address == "" || roleID == "")
             {
-                MessageBox.Show("Please input every field.");
+                MessageBox.Show("Please fill in all the fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -172,11 +250,11 @@ namespace hotel_management
 
             if (id == "Auto Generate")
             {
-                query = $"insert into UserInfo (Fullname,Email,Phone,Gender,Address,Password,RoleID) values ('{fullname}','{email}','{phone}','{gender}','{address}','{password}',{roleID}) ";
+                query = $"insert into UserInfo (Fullname,Email,Phone,Gender,Address,Password,RoleID) values ('{fullname}','{email}','{phone}','{gender}','{address}','{password}','{roleID}') ";
             }
             else
             {
-                query = $"update  UserInfo set  Fullname='{fullname}',Phone='{phone}', Gender='{gender}', RoleID='{roleID}', Address='{address}'  Where UserID={id}";
+                query = $"update  UserInfo set  Fullname='{fullname}',Phone='{phone}', Gender='{gender}', RoleID='{roleID}', Address='{address}'  Where UserID='{id}'";
             }
 
             try
@@ -190,7 +268,7 @@ namespace hotel_management
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("saved");
+                MessageBox.Show("Record saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 con.Close();
             }
             catch (Exception ex)
@@ -199,49 +277,6 @@ namespace hotel_management
             }
         }
 
-        private void btnDel_Click(object sender, EventArgs e)
-        {
-            this.defProperties();
-
-            string id = txtID.Text;
-            if (id == "Auto Generate")
-            {
-                MessageBox.Show("Please select a Employee first");
-                return;
-            }
-            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
-            if (result == DialogResult.No)
-                return;
-
-            try
-            {
-                var con = new SqlConnection();
-                con.ConnectionString = ApplicationHelper.connectionPath;
-                con.Open();
-
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = $"delete from UserInfo where UserID={id}";
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Deleted");
-
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            this.LoadEmployeeInfo();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            this.NewDataSave();
-            this.LoadEmployeeInfo();
-            this.defProperties();
-        }
 
     }
 }

@@ -123,7 +123,7 @@
             this.ckbShowpass.Location = new System.Drawing.Point(133, 7);
             this.ckbShowpass.Name = "ckbShowpass";
             this.ckbShowpass.Size = new System.Drawing.Size(195, 28);
-            this.ckbShowpass.TabIndex = 42;
+            this.ckbShowpass.TabIndex = 8;
             this.ckbShowpass.Text = "Want to change password?";
             this.ckbShowpass.UseVisualStyleBackColor = true;
             this.ckbShowpass.CheckedChanged += new System.EventHandler(this.ckbShowpass_CheckedChanged);
@@ -137,7 +137,7 @@
             this.btnConfirm.Location = new System.Drawing.Point(516, 98);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(136, 36);
-            this.btnConfirm.TabIndex = 34;
+            this.btnConfirm.TabIndex = 11;
             this.btnConfirm.Text = "Confirm";
             this.btnConfirm.UseVisualStyleBackColor = true;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -161,7 +161,7 @@
             this.txtNewPass.Location = new System.Drawing.Point(764, 44);
             this.txtNewPass.Name = "txtNewPass";
             this.txtNewPass.Size = new System.Drawing.Size(247, 32);
-            this.txtNewPass.TabIndex = 38;
+            this.txtNewPass.TabIndex = 10;
             this.txtNewPass.UseSystemPasswordChar = true;
             // 
             // label10
@@ -183,7 +183,7 @@
             this.txtPass.Location = new System.Drawing.Point(301, 47);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(247, 32);
-            this.txtPass.TabIndex = 36;
+            this.txtPass.TabIndex = 9;
             this.txtPass.UseSystemPasswordChar = true;
             // 
             // panel5
@@ -215,7 +215,7 @@
             this.btnSave.Location = new System.Drawing.Point(516, 254);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(136, 36);
-            this.btnSave.TabIndex = 33;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -228,7 +228,7 @@
             this.dateDOB.Location = new System.Drawing.Point(303, 187);
             this.dateDOB.Name = "dateDOB";
             this.dateDOB.Size = new System.Drawing.Size(247, 32);
-            this.dateDOB.TabIndex = 32;
+            this.dateDOB.TabIndex = 3;
             // 
             // label8
             // 
@@ -273,7 +273,7 @@
             this.txtFname.Margin = new System.Windows.Forms.Padding(2);
             this.txtFname.Name = "txtFname";
             this.txtFname.Size = new System.Drawing.Size(247, 32);
-            this.txtFname.TabIndex = 18;
+            this.txtFname.TabIndex = 1;
             // 
             // txtAddress
             // 
@@ -283,7 +283,7 @@
             this.txtAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(247, 32);
-            this.txtAddress.TabIndex = 27;
+            this.txtAddress.TabIndex = 6;
             // 
             // label2
             // 
@@ -305,7 +305,7 @@
             this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(203, 35);
-            this.panel7.TabIndex = 25;
+            this.panel7.TabIndex = 2;
             // 
             // rdbFemale
             // 
@@ -352,7 +352,7 @@
             this.txtPhone.Margin = new System.Windows.Forms.Padding(2);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(247, 32);
-            this.txtPhone.TabIndex = 23;
+            this.txtPhone.TabIndex = 5;
             // 
             // txtEmail
             // 
@@ -363,7 +363,7 @@
             this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(247, 32);
-            this.txtEmail.TabIndex = 21;
+            this.txtEmail.TabIndex = 4;
             // 
             // label3
             // 

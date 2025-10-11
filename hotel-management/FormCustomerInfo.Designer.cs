@@ -47,12 +47,12 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnSignup = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.txtFname = new System.Windows.Forms.TextBox();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pnlGender = new System.Windows.Forms.Panel();
             this.rdbFemale = new System.Windows.Forms.RadioButton();
             this.rdbMale = new System.Windows.Forms.RadioButton();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -75,7 +75,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pnlGender.SuspendLayout();
             this.panel4.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -151,6 +151,7 @@
             this.dgvCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCustomer.Size = new System.Drawing.Size(780, 464);
             this.dgvCustomer.TabIndex = 0;
+            this.dgvCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellClick);
             // 
             // Column1
             // 
@@ -259,12 +260,12 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.txtID);
             this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.btnSignup);
+            this.panel2.Controls.Add(this.btnSave);
             this.panel2.Controls.Add(this.txtFname);
             this.panel2.Controls.Add(this.txtAddress);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtPhone);
-            this.panel2.Controls.Add(this.panel3);
+            this.panel2.Controls.Add(this.pnlGender);
             this.panel2.Controls.Add(this.txtEmail);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.label4);
@@ -303,19 +304,20 @@
             this.label6.Text = "ID";
             this.label6.Visible = false;
             // 
-            // btnSignup
+            // btnSave
             // 
-            this.btnSignup.BackColor = System.Drawing.Color.White;
-            this.btnSignup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignup.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.btnSignup.Location = new System.Drawing.Point(136, 367);
-            this.btnSignup.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSignup.Name = "btnSignup";
-            this.btnSignup.Size = new System.Drawing.Size(88, 36);
-            this.btnSignup.TabIndex = 35;
-            this.btnSignup.Text = "SAVE";
-            this.btnSignup.UseVisualStyleBackColor = false;
+            this.btnSave.BackColor = System.Drawing.Color.White;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
+            this.btnSave.Location = new System.Drawing.Point(136, 367);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(88, 36);
+            this.btnSave.TabIndex = 35;
+            this.btnSave.Text = "SAVE";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtFname
             // 
@@ -359,15 +361,15 @@
             this.txtPhone.Size = new System.Drawing.Size(255, 32);
             this.txtPhone.TabIndex = 28;
             // 
-            // panel3
+            // pnlGender
             // 
-            this.panel3.Controls.Add(this.rdbFemale);
-            this.panel3.Controls.Add(this.rdbMale);
-            this.panel3.Location = new System.Drawing.Point(112, 241);
-            this.panel3.Margin = new System.Windows.Forms.Padding(2);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(173, 35);
-            this.panel3.TabIndex = 30;
+            this.pnlGender.Controls.Add(this.rdbFemale);
+            this.pnlGender.Controls.Add(this.rdbMale);
+            this.pnlGender.Location = new System.Drawing.Point(112, 241);
+            this.pnlGender.Margin = new System.Windows.Forms.Padding(2);
+            this.pnlGender.Name = "pnlGender";
+            this.pnlGender.Size = new System.Drawing.Size(173, 35);
+            this.pnlGender.TabIndex = 30;
             // 
             // rdbFemale
             // 
@@ -555,6 +557,7 @@
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "+ NEW";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDel
             // 
@@ -568,23 +571,24 @@
             this.btnDel.TabIndex = 11;
             this.btnDel.Text = "DELETE";
             this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // btnUpdate
             // 
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.btnUpdate.Location = new System.Drawing.Point(134, 7);
+            this.btnUpdate.Location = new System.Drawing.Point(121, 7);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(88, 34);
+            this.btnUpdate.Size = new System.Drawing.Size(102, 34);
             this.btnUpdate.TabIndex = 10;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // FormCustomerInfo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1134, 581);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -598,8 +602,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pnlGender.ResumeLayout(false);
+            this.pnlGender.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
@@ -620,12 +624,12 @@
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btnSignup;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.TextBox txtFname;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pnlGender;
         private System.Windows.Forms.RadioButton rdbFemale;
         private System.Windows.Forms.RadioButton rdbMale;
         private System.Windows.Forms.TextBox txtEmail;

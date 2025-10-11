@@ -60,8 +60,8 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.97574F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.02426F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.00935F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.99065F));
             this.tableLayoutPanel1.Controls.Add(this.panel2, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -69,7 +69,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1484, 691);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1284, 661);
             this.tableLayoutPanel1.TabIndex = 16;
             // 
             // panel2
@@ -79,7 +79,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(795, 685);
+            this.panel2.Size = new System.Drawing.Size(726, 655);
             this.panel2.TabIndex = 0;
             // 
             // panel3
@@ -105,9 +105,9 @@
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(804, 3);
+            this.panel3.Location = new System.Drawing.Point(735, 3);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(677, 685);
+            this.panel3.Size = new System.Drawing.Size(546, 655);
             this.panel3.TabIndex = 1;
             // 
             // btnHidden
@@ -118,7 +118,7 @@
             this.btnHidden.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHidden.Font = new System.Drawing.Font("Myanmar Text", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHidden.ForeColor = System.Drawing.Color.Transparent;
-            this.btnHidden.Location = new System.Drawing.Point(459, 433);
+            this.btnHidden.Location = new System.Drawing.Point(407, 440);
             this.btnHidden.Name = "btnHidden";
             this.btnHidden.Size = new System.Drawing.Size(41, 25);
             this.btnHidden.TabIndex = 9;
@@ -133,7 +133,7 @@
             this.btnEye.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnEye.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEye.ForeColor = System.Drawing.Color.Transparent;
-            this.btnEye.Location = new System.Drawing.Point(459, 433);
+            this.btnEye.Location = new System.Drawing.Point(407, 440);
             this.btnEye.Name = "btnEye";
             this.btnEye.Size = new System.Drawing.Size(41, 25);
             this.btnEye.TabIndex = 9;
@@ -146,7 +146,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Myanmar Text", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label11.Location = new System.Drawing.Point(276, 18);
+            this.label11.Location = new System.Drawing.Point(224, 25);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(108, 43);
             this.label11.TabIndex = 23;
@@ -157,7 +157,7 @@
             this.lblLogin.AutoSize = true;
             this.lblLogin.Font = new System.Drawing.Font("Myanmar Text", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.lblLogin.Location = new System.Drawing.Point(377, 556);
+            this.lblLogin.Location = new System.Drawing.Point(360, 599);
             this.lblLogin.Name = "lblLogin";
             this.lblLogin.Size = new System.Drawing.Size(56, 29);
             this.lblLogin.TabIndex = 11;
@@ -167,7 +167,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(176, 556);
+            this.label9.Location = new System.Drawing.Point(159, 599);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(208, 29);
             this.label9.TabIndex = 21;
@@ -179,7 +179,7 @@
             this.btnSignup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSignup.Font = new System.Drawing.Font("Myanmar Text", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSignup.ForeColor = System.Drawing.Color.White;
-            this.btnSignup.Location = new System.Drawing.Point(248, 482);
+            this.btnSignup.Location = new System.Drawing.Point(217, 496);
             this.btnSignup.Margin = new System.Windows.Forms.Padding(2);
             this.btnSignup.Name = "btnSignup";
             this.btnSignup.Size = new System.Drawing.Size(136, 45);
@@ -192,7 +192,7 @@
             // 
             this.txtPassword.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPassword.Location = new System.Drawing.Point(152, 429);
+            this.txtPassword.Location = new System.Drawing.Point(100, 436);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(352, 32);
@@ -203,7 +203,7 @@
             // 
             this.txtFname.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtFname.Location = new System.Drawing.Point(148, 133);
+            this.txtFname.Location = new System.Drawing.Point(96, 140);
             this.txtFname.Margin = new System.Windows.Forms.Padding(2);
             this.txtFname.Name = "txtFname";
             this.txtFname.Size = new System.Drawing.Size(356, 32);
@@ -213,7 +213,7 @@
             // 
             this.txtAddress.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtAddress.Location = new System.Drawing.Point(152, 364);
+            this.txtAddress.Location = new System.Drawing.Point(100, 371);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(352, 32);
@@ -224,7 +224,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label2.Location = new System.Drawing.Point(147, 171);
+            this.label2.Location = new System.Drawing.Point(95, 178);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 29);
@@ -235,7 +235,7 @@
             // 
             this.txtPhone.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtPhone.Location = new System.Drawing.Point(152, 265);
+            this.txtPhone.Location = new System.Drawing.Point(100, 272);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(2);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(352, 32);
@@ -245,7 +245,7 @@
             // 
             this.panel1.Controls.Add(this.rdbFemale);
             this.panel1.Controls.Add(this.rdbMale);
-            this.panel1.Location = new System.Drawing.Point(219, 301);
+            this.panel1.Location = new System.Drawing.Point(167, 308);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(203, 35);
@@ -283,7 +283,7 @@
             // 
             this.txtEmail.Font = new System.Drawing.Font("Myanmar Text", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtEmail.Location = new System.Drawing.Point(152, 200);
+            this.txtEmail.Location = new System.Drawing.Point(100, 207);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(352, 32);
@@ -294,7 +294,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label3.Location = new System.Drawing.Point(147, 237);
+            this.label3.Location = new System.Drawing.Point(95, 244);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(62, 29);
@@ -306,7 +306,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label6.Location = new System.Drawing.Point(147, 401);
+            this.label6.Location = new System.Drawing.Point(95, 408);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(85, 29);
@@ -318,7 +318,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label4.Location = new System.Drawing.Point(147, 304);
+            this.label4.Location = new System.Drawing.Point(95, 311);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(68, 29);
@@ -330,7 +330,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label5.Location = new System.Drawing.Point(147, 337);
+            this.label5.Location = new System.Drawing.Point(95, 344);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(73, 29);
@@ -342,7 +342,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Myanmar Text", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(61)))), ((int)(((byte)(50)))));
-            this.label1.Location = new System.Drawing.Point(143, 108);
+            this.label1.Location = new System.Drawing.Point(91, 115);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 29);
@@ -353,12 +353,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1484, 691);
+            this.ClientSize = new System.Drawing.Size(1284, 661);
             this.Controls.Add(this.tableLayoutPanel1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(1500, 730);
-            this.MinimumSize = new System.Drawing.Size(1500, 730);
             this.Name = "FormSignup";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SignUp";

@@ -19,13 +19,18 @@ namespace hotel_management
             InitializeComponent();
         }
 
-
+        //
+        //go to previous page
+        //
         private void FormAdministration_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (this.Owner != null)
                 this.Owner.Show();
         }
 
+        //
+        //role based dashboard load
+        //
         private void FormAdministrator_Load(object sender, EventArgs e)
         {
             lblFullname.Text = $"{ApplicationHelper.FullName}";
@@ -34,6 +39,9 @@ namespace hotel_management
             this.empRestriction();
         }
 
+        //
+        //restriction for employee
+        //
         private void empRestriction()
         {
             if (ApplicationHelper.UserType != "Admin")
@@ -47,6 +55,9 @@ namespace hotel_management
             }
         }
 
+        //
+        //all the labels info --counting
+        //
         private void LoadData()
         {
             try
@@ -85,7 +96,6 @@ namespace hotel_management
                 lblPaidCount.Text = $"Total Revenue ({ds.Tables[9].Rows[0][0].ToString()})";
                 lblPendingCount.Text = $"Pending Payment ({ds.Tables[10].Rows[0][0].ToString()})";
 
-
                 con.Close();
             }
 
@@ -95,11 +105,17 @@ namespace hotel_management
             }
         }
 
+        //
+        //btn refresh
+        //
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             this.LoadData();
         }
 
+        //
+        //all the management --below
+        //
         private void btnGuestMG_Click(object sender, EventArgs e)
         {
             FormCustomerInfo cs = new FormCustomerInfo();
@@ -142,12 +158,18 @@ namespace hotel_management
             role.ShowDialog();
         }
 
+        //
+        //go to settings
+        //
         private void btnSettings_Click(object sender, EventArgs e)
         {
             FormSetting setting = new FormSetting();
             setting.ShowDialog();
         }
 
+        //
+        //logout
+        //
         private void btnLogOut_Click(object sender, EventArgs e)
         {
             if (this.Owner != null) 
@@ -157,19 +179,5 @@ namespace hotel_management
             }
         }
 
-        private void tableLayoutPanel7_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel15_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel31_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

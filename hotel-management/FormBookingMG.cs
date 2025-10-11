@@ -25,9 +25,6 @@ namespace hotel_management
         {
             this.LoadBookingData();
             this.defProperties();
-
-            if (ApplicationHelper.UserType != "Admin")
-                btnDel.Visible = false;
         }
 
 
@@ -48,6 +45,7 @@ namespace hotel_management
             cmbRoom.Enabled = false;
             cmbStatus.Enabled = false;
 
+            txtID.Text = "Auto Generate";
             txtGID.Text = "";
             txtGname.Text = "";
             txtPhone.Text = "";
@@ -62,7 +60,7 @@ namespace hotel_management
             cmbStatus.SelectedIndex = -1;
         }
 
-
+      
         //
         // Refresh btn load
         //
@@ -72,12 +70,13 @@ namespace hotel_management
             this.defProperties();
         }
 
-
+      
         //
         // Load dgv + cmb
         //
         private void LoadBookingData()
         {
+            ApplicationHelper.BookingStaus = "";
             try
             {
                 var con = new SqlConnection();
@@ -180,7 +179,7 @@ namespace hotel_management
             btnSearchRoom.Enabled = true;
             btnSave.Enabled = true;           
         }
-
+       
         
         //
         // Search guest for new booking
@@ -205,7 +204,7 @@ namespace hotel_management
 
                 if (dt.Rows.Count != 1)
                 {
-                    MessageBox.Show("Guest not found");
+                    MessageBox.Show("Guest not found.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 txtGID.Text = dt.Rows[0]["UserID"].ToString();
@@ -232,7 +231,7 @@ namespace hotel_management
       
 
         //
-        //room search
+        //btn room search
         //
         private void btnSearchRoom_Click(object sender, EventArgs e)
         {
@@ -252,13 +251,13 @@ namespace hotel_management
 
             if (dateCkOut.Value <= dateCkIn.Value)
             {
-                MessageBox.Show("Check-out date must be after check-in date.");
+                MessageBox.Show("Check-out date must be after the check-in date.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (cmbType.SelectedValue == null)
             {
-                MessageBox.Show("Please select a room type");
+                MessageBox.Show("Please select a room type.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else
@@ -283,7 +282,7 @@ namespace hotel_management
 
                 if (dt.Rows.Count == 0)
                 {
-                    MessageBox.Show("No available room.");
+                    MessageBox.Show("No available rooms.", "Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
@@ -352,7 +351,7 @@ namespace hotel_management
             string id = txtID.Text;
             if (id == "Auto Generate")
             {
-                MessageBox.Show("Please select The Row First");
+                MessageBox.Show("Please select a row first.", "Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -363,54 +362,6 @@ namespace hotel_management
             cmbStatus.Enabled = true; 
             btnSave.Enabled = true;
         }
-
-
-        //
-        // delete btn
-        //
-        private void btnDel_Click(object sender, EventArgs e)
-        {
-            this.Delete();
-            this.LoadBookingData();
-            this.defProperties();
-        }
-
-        //
-        // delete btn click trigger
-        //
-        private void Delete()
-        {
-            string id = txtID.Text;
-            if (id == "Auto Generate")
-            {
-                MessageBox.Show("Please select The Row First");
-                return;
-            }
-            var result = MessageBox.Show("Are you sure?", "Confirmation", MessageBoxButtons.YesNo);
-            if (result == DialogResult.No)
-                return;
-
-            try
-            {
-                var con = new SqlConnection();
-                con.ConnectionString = ApplicationHelper.connectionPath;
-                con.Open();
-
-                var cmd = new SqlCommand();
-                cmd.Connection = con;
-                cmd.CommandText = $"delete from Booking where BookingID={id}";
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("Deleted");
-
-                con.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
 
         //
         // save btn
@@ -428,6 +379,12 @@ namespace hotel_management
         //
         private void Save()
         {
+            if (txtGID.Text == "" || cmbRoom.SelectedValue == null || cmbStatus.Text == "")
+            {
+                MessageBox.Show("Please fill in all the fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string id = txtID.Text;
             string guestID = txtGID.Text;
             string roomID = cmbRoom.SelectedValue.ToString();
@@ -435,11 +392,6 @@ namespace hotel_management
             string checkOut = dateCkOut.Value.ToString("yyyy-MM-dd");
             string status = cmbStatus.Text;
 
-            if (guestID == "" || roomID == "" || status == "")
-            {
-                MessageBox.Show("Please fill all the inputs");
-                return;
-            }
 
             string query = "";
 
@@ -464,7 +416,7 @@ namespace hotel_management
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("Saved");
+                MessageBox.Show("Record saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
                 if (id == "Auto Generate")
@@ -490,6 +442,7 @@ namespace hotel_management
                     {
                         ApplicationHelper.BookingID = id;
                         ApplicationHelper.Amount = txtAmount.Text;
+                        ApplicationHelper.BookingStaus = "Checked-Out";
                         FormCusBilling cusBilling = new FormCusBilling();
                         cusBilling.ShowDialog();
                     }
@@ -503,5 +456,6 @@ namespace hotel_management
             }
 
         }
+
     }
 }

@@ -23,6 +23,9 @@ namespace hotel_management
             this.LoadData();
         }
 
+        //
+        //get current info
+        //
         private void LoadData()
         {
             try
@@ -34,7 +37,7 @@ namespace hotel_management
 
                 var cmd = new SqlCommand();
                 cmd.Connection = con;
-                cmd.CommandText = $"select * from UserInfo where UserID={ApplicationHelper.UserID}";
+                cmd.CommandText = $"select * from UserInfo where UserID='{ApplicationHelper.UserID}'";
 
                 DataTable dt = new DataTable();
                 SqlDataAdapter adp = new SqlDataAdapter(cmd);
@@ -63,11 +66,17 @@ namespace hotel_management
             }
         }
 
+        //
+        //btn save---generalinfo
+        //
         private void btnSave_Click(object sender, EventArgs e)
         {
             this.generalInfo();
         }
 
+        //
+        // general info update
+        //
         private void generalInfo()
         {
             string id = txtID.Text;
@@ -90,7 +99,7 @@ namespace hotel_management
 
             if (fullname == "" || phone == "" || gender == "" || address == "")
             {
-                MessageBox.Show("Please input necessary fields.");
+                MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -116,7 +125,7 @@ namespace hotel_management
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
 
-                MessageBox.Show("saved");
+                MessageBox.Show("Record saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 con.Close();
             }
             catch (Exception ex)
@@ -125,6 +134,9 @@ namespace hotel_management
             }
         }
 
+        //
+        //unable password section
+        //
         private void ckbShowpass_CheckedChanged(object sender, EventArgs e)
         {
             txtPass.Enabled = ckbShowpass.Checked;
@@ -132,11 +144,17 @@ namespace hotel_management
             btnConfirm.Enabled = ckbShowpass.Checked;
         }
 
+        //
+        //btn confirm-- change pass
+        //
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             this.securityInfo();
         }
 
+        //
+        //change password
+        //
         private void securityInfo()
         {
             string id = txtID.Text;
@@ -145,12 +163,12 @@ namespace hotel_management
 
             if (pass == "" || npass == "")
             {
-                MessageBox.Show("Please enter valid password.");
+                MessageBox.Show("Please enter a valid password.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else if (pass == npass)
             {
-                MessageBox.Show("New password is same as current password.");
+                MessageBox.Show("The new password cannot be the same as the current password.", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -171,7 +189,7 @@ namespace hotel_management
                 string dbPass = dt.Rows[0]["Password"].ToString();
                 if (dbPass != pass)
                 {
-                    MessageBox.Show("Invalid current password.");
+                    MessageBox.Show("Current password and new password do not match.", "Password Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     con.Close();
                     return;
                 }
@@ -179,7 +197,7 @@ namespace hotel_management
                 {
                     cmd.CommandText = $"update UserInfo set Password= '{npass}' where UserID='{id}'";
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Password Updated");
+                    MessageBox.Show("Password updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
                 con.Close();
